@@ -10,5 +10,5 @@ export default defineConfig({
   site: "https://code-lab.xyz",
   integrations: [mdx(), sitemap(), tailwind()],
   output: "server",
-  adapter: vercel()
+  adapter: vercel(),
 });
