@@ -1,0 +1,46 @@
+---
+import { format, formatDistanceToNow, subYears } from "date-fns";
+import type { CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"blog">;
+const {
+  slug,
+  data: { title, description, pubDate, updatedDate, emoji },
+} = Astro.props;
+---
+
+<a href={`/blog/${slug}`}>
+  <article
+    class="flex flex-col w-full h-full p-5 shadow-xl bg-white transition hover:shadow-md hover:opacity-80 rounded-md"
+  >
+    <div class="w-full mb-5 p-5 text-6xl bg-gray-100 text-center rounded-md">
+      {emoji}
+    </div>
+    <!-- <div class="mb-2 flex space-x-2">
+          {tags &&
+            tags.map((tag, index) => (
+              <p key={index} class="text-xs text-gray-400 m-0">
+                {tag}
+              </p>
+            ))}
+        </div> -->
+    <div class="flex-1 mb-5">
+      <p class="text-md mb-1">{title}</p>
+      <p class="text-sm text-gray-500">{description}</p>
+    </div>
+    <time
+      class="text-sm text-gray-900/50"
+      title={format(pubDate, "yyyy/MM/dd")}
+      datetime={format(pubDate, "yyyy-MM-dd")}
+    >
+      {
+        subYears(new Date(), 1) > pubDate
+          ? format(pubDate, "yyyy/MM/dd")
+          : formatDistanceToNow(pubDate, {
+              includeSeconds: true,
+              addSuffix: true,
+            })
+      }
+    </time>
+  </article>
+</a>

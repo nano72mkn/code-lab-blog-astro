@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel/static";
 
 import tailwind from "@astrojs/tailwind";
 
@@ -9,6 +9,6 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://code-lab.xyz",
   integrations: [mdx(), sitemap(), tailwind()],
-  output: "server",
+  output: "static",
   adapter: vercel(),
 });
