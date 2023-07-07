@@ -1,21 +1,43 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+import Head1 from "../../components/MdxComponents/Head1.astro";
+import Head2 from "../../components/MdxComponents/Head2.astro";
+import Head3 from "../../components/MdxComponents/Head3.astro";
+import Head4 from "../../components/MdxComponents/Head4.astro";
+import Head5 from "../../components/MdxComponents/Head5.astro";
+import Head6 from "../../components/MdxComponents/Head6.astro";
+import Blockquote from "../../components/MdxComponents/Blockquote.astro";
+import Code from "../../components/MdxComponents/Code.astro";
+import Link from "../../components/MdxComponents/Link.astro";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await post.render();
 ---
 
 <BlogPost {...post.data}>
-	<h1>{post.data.title}</h1>
-	<Content />
+  <h1>{post.data.title}</h1>
+
+  <Content
+    components={{
+      h1: Head1,
+      h2: Head2,
+      h3: Head3,
+      h4: Head4,
+      h5: Head5,
+      h6: Head6,
+      blockquote: Blockquote,
+      code: Code,
+      a: Link,
+    }}
+  />
 </BlogPost>

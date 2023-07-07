@@ -1,0 +1,24 @@
+---
+import OgpCard from "../OgpCard.astro";
+import { Tweet } from "../Tweet";
+
+const { href } = Astro.props;
+
+const isExternalLink = /^http/.test(href);
+const url = isExternalLink ? new URL(href) : undefined;
+
+let component = "default";
+
+switch (url?.host) {
+  case "twitter.com":
+    component = "twitter";
+    break;
+  default:
+    component = "ogp";
+    break;
+}
+---
+
+{component === "twitter" && <Tweet href={href} />}
+{component === "ogp" && <OgpCard href={href} />}
+{component === "default" && <a href={href}>{href}</a>}
