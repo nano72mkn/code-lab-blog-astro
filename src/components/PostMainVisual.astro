@@ -1,0 +1,45 @@
+---
+import { format } from "date-fns";
+
+type Props = {
+  emoji?: string;
+  title: string;
+  tags?: string[];
+  pubDate: Date;
+  updatedDate?: Date;
+};
+const { emoji, title, tags, pubDate, updatedDate } = Astro.props;
+---
+
+<div class="flex items-center flex-col w-full my-5 p-5">
+  <div class="text-6xl mb-5">{emoji}</div>
+  <h1 class="text-3xl font-bold mb-5 text-center">{title}</h1>
+  <div class="flex space-x-2">
+    {tags && tags.map((tag, index) => <p class="text-gray-500">{tag}</p>)}
+  </div>
+  <div class="flex space-x-3">
+    <p class="text-gray-500 p-0">
+      公開：
+      <time
+        title={format(pubDate, "yyyy/MM/dd")}
+        datetime={format(pubDate, "yyyy-MM-dd")}
+      >
+        {format(pubDate, "yyyy/MM/dd")}
+      </time>
+    </p>
+
+    {
+      updatedDate && (
+        <p class="text-gray-500">
+          更新：
+          <time
+            title={format(updatedDate, "yyyy/MM/dd")}
+            datetime={format(updatedDate, "yyyy-MM-dd")}
+          >
+            {format(updatedDate, "yyyy/MM/dd")}
+          </time>
+        </p>
+      )
+    }
+  </div>
+</div>
