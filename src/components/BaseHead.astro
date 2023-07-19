@@ -1,41 +1,42 @@
 ---
-import "../styles/global.css";
+const origin = Astro.url.origin;
 
-export interface Props {
+type Props = {
   title: string;
-  description: string;
-  image?: string;
-}
+  description?: string;
+  slug?: string;
+};
+const { title: titleProps, description: descriptionProps, slug } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = "/placeholder-social.jpg" } = Astro.props;
+const title = `${titleProps ? `${titleProps} | ` : ""}Code Lab Blog`;
+const url = `${origin}${slug ? `/posts/${slug}` : ""}`;
+const description =
+  descriptionProps ?? "フロントエンジニア、@shota1995mの個人ブログ&実験サイト";
+const ogpCardUrl = `${origin}/api/ogp_card?title=${encodeURIComponent(
+  titleProps ?? "Code Lab Blog"
+)}`;
 ---
 
-<!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="generator" content={Astro.generator} />
-
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
-
-<!-- Primary Meta Tags -->
 <title>{title}</title>
-<meta name="title" content={title} />
 <meta name="description" content={description} />
+<link rel="canonical" href={url} />
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- ogp -->
+<meta property="og:url" content={url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={ogpCardUrl} />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="code-lab" />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- hatena -->
+<link rel="author" href="http://www.hatena.ne.jp/nano72mkn/" />
