@@ -1,0 +1,116 @@
+---
+title: "Next.jsのinitializeをしてみた"
+published: true
+pubDate: "2021-06-03"
+tags: ["nextjs", "storybook", "prettier", "react"]
+emoji: "🐶"
+---
+
+# 今回設定するもの
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- ESLint
+- Prettier
+- StoryBook
+
+一応、完成品は[こちら](https://github.com/shota1995m/nextjs_boilerplate)
+
+# 設定をしていく
+
+## Next.js
+
+```
+$ npx create-next-app --typescript --use-npm
+```
+
+`create-next-app` は久しぶりに実行する際は install しといた方が良いかと
+
+npm を使いたいのでオプションで`--use-npm`を指定しています
+付けなかった場合は yarn が指定されているので npm 派の方はつけるように
+ちなみに、毎度忘れて作り直してます
+
+`--typescript`を付与しているので、typescript 対応も同時に完了です。
+
+## ESLint
+
+nextjs11 から next lint が使用できます。
+
+```
+$ npx next lint
+To use ESLint, additional required package(s) must be installed.
+
+Please install eslint and eslint-config-next by running:
+
+        npm install --save-dev eslint eslint-config-next
+
+Once installed, run next lint again.
+```
+
+何個か入れろって言われたので install します
+
+```
+$ npm install --save-dev eslint eslint-config-next
+```
+
+package.json に`next lint`を追加します
+
+```json:package.json
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+```
+
+`npm run lint`で lint が動くようになりました。
+
+↓ 参考
+
+https://nextjs.org/docs/basic-features/eslint
+
+## Prettier
+
+[ReactNative の開発環境メモ２ - Prettier 編](/blog/4) の時と同じ設定で使います
+
+```json:.prettierrc
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "parser": "typescript",
+  "filepath": "./src/**/*.{ts,tsx}"
+}
+```
+
+## StoryBook
+
+これは好みですが、自分は入れておきます！！
+
+```
+$ npx -p @storybook/cli sb init --type react_scripts
+```
+
+いろいろ生成されますが、stories ディレクトリは空にしておきます（いらないので w）
+
+## husky & lint-staged
+
+最後に`husky`と`lint-staged`をついか
+下記の記事参考にそのまんま実装....!!!
+
+[ReactNative の開発環境メモ３ - husky & lint-staged 編](/blog/5)
+
+と行きたかったのですが、npm を使っているので`huskyの導入`のとこは下記にします
+
+```
+$ npx husky-init && npm install
+```
+
+# まとめ
+
+いったんおわり。
+
+最終的に、`Prettier`と`StoryBook`しか追加してないような.....???
+
+今後`material-ui`とか入れておいた方がいいかなって物が出てきたら追加します！

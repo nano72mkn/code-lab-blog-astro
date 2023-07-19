@@ -40,7 +40,7 @@ export const OgpCard: React.FC<Props> = ({ url }) => {
           </div>
         </div>
         {data.ogp.ogImage && (
-          <div className="relative w-full xl:max-w-sm aspect-ogImage bg-slate-50">
+          <div className="overflow-hidden relative w-full xl:max-w-sm aspect-ogImage bg-slate-50">
             <img
               src={data.ogp.ogImage}
               className="object-contain"

@@ -1,0 +1,30 @@
+---
+title: "供養：画像のサイズ（width/height）を取得するやつ。"
+published: true
+pubDate: "2021-07-29"
+tags: ["typescript"]
+emoji: "🤳"
+---
+
+使うとおもって実装したけど、仕様書みたらいらなかったので供養します。
+
+## 画像の w/h 取得くん
+
+画像のサイズ（width/height）を取得するやつ。
+
+```typescript
+interface Result {
+  width: number;
+  height: number;
+}
+
+export const getImageSize = (file: File): Promise<Result> => {
+  return new Promise((resolve) => {
+    const image = new Image();
+    image.onload = function () {
+      resolve({ width: image.naturalWidth, height: image.naturalHeight });
+    };
+    image.src = URL.createObjectURL(file);
+  });
+};
+```

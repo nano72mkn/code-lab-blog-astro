@@ -1,0 +1,37 @@
+---
+title: "React の arrow function で react/prop-types が出た"
+published: true
+pubDate: "2021-05-08"
+tags: ["react", "typescript"]
+emoji: "😇"
+---
+
+## TL;DR
+
+'react/prop-types': 'off'をつければいいやん
+
+
+## 現象
+```javascript
+const hoge: React.VFC<Props> = ({ aaa, bbb }) => (...)
+```
+こんなコンポーネントを作ってeslintを通すと、
+```
+   -:--  error  'aaa' is missing in props validation  react/prop-types
+   -:--  error  'bbb' is missing in props validation  react/prop-types
+````
+みたいに出る。
+
+https://github.com/yannickcr/eslint-plugin-react/issues/2353
+↑ここでいろいろ議論されてる
+
+
+## 結論
+いろいろ解決策は出てきてるけど、個人的には`.eslintrc.js`を修正が一番楽そうとおもっている。
+```
+...
+rules: {
+  'react/prop-types': 'off'
+}
+...
+```
