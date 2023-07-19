@@ -1,5 +1,11 @@
 ---
 import { SITE_TITLE } from "../consts";
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const baseClass = "transition hover:text-gray-400";
+const activeClass = "underline font-bold";
+const inactiveClass = "hover:underline";
 ---
 
 <header class="flex items-center justify-between py-5 md:py-10">
@@ -9,13 +15,22 @@ import { SITE_TITLE } from "../consts";
   <nav>
     <ul class="flex space-x-6">
       <li>
-        <a class="transition hover:underline hover:text-gray-400" href="/">
+        <a
+          class:list={[
+            baseClass,
+            pathname === "/" ? activeClass : inactiveClass,
+          ]}
+          href="/"
+        >
           Home
         </a>
       </li>
       <li>
         <a
-          class="transition underline font-bold hover:text-gray-400"
+          class:list={[
+            baseClass,
+            pathname === "/blog" ? activeClass : inactiveClass,
+          ]}
           href="/blog"
         >
           Blog
