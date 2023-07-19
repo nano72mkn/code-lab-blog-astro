@@ -11,11 +11,14 @@ const { title: titleProps, description: descriptionProps, slug } = Astro.props;
 const title = `${titleProps ? `${titleProps} | ` : ""}Code Lab Blog`;
 const url = `${origin}${slug ? `/posts/${slug}` : ""}`;
 const description =
-  descriptionProps ?? "フロントエンジニア、@shota1995mの個人ブログ&実験サイト";
+  descriptionProps || "フロントエンジニア、@shota1995mの個人ブログ&実験サイト";
 const ogpCardUrl = `${origin}/api/ogp_card?title=${encodeURIComponent(
   titleProps ?? "Code Lab Blog"
 )}`;
 ---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <title>{title}</title>
 <meta name="description" content={description} />

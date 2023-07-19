@@ -13,22 +13,9 @@ type Props = {
 const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="ja">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
-      }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
   </head>
 
   <body class="bg-gray-50 container mx-auto px-5">
