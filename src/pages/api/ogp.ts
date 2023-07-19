@@ -16,8 +16,7 @@ export type OgpResponseType = {
   };
 };
 
-export const get: APIRoute = async ({ params, request, props }) => {
-  console.log({ request: request.text, props });
+export const get: APIRoute = async ({ request, props }) => {
   //   if (!request.query.url) {
   return new Response(null, {
     status: 200,

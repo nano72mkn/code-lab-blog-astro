@@ -3,11 +3,12 @@ import ogpParser from "ogp-parser";
 
 const { href } = Astro.props;
 
+console.log({ href });
+
 const url = new URL(href as string);
 const data = await ogpParser(url.href, { skipOembed: true });
 const domain = url.hostname;
 const favicon = `http://www.google.com/s2/favicons?sz=32&domain=https://${domain}`;
-console.log(data.ogp["og:image"]);
 ---
 
 <div

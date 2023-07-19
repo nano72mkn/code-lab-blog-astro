@@ -20,11 +20,4 @@ const blog = defineCollection({
   }),
 });
 
-title: "2022年振り返り";
-published: true;
-date: "2022-12-28T00:00:00";
-update: "2022-01-04T00:00:00";
-tags: ["日記", "振り返り"];
-emoji: "🐯";
-
 export const collections = { blog };

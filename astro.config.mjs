@@ -9,11 +9,16 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://code-lab.xyz",
-  integrations: [mdx({
-    optimize: {
-      customComponentNames: ["h1", "h2", "h3", "h4", "h5", "h6", "p", "a"]
-    }
-  }), sitemap(), tailwind(), react()],
+  integrations: [
+    mdx({
+      optimize: {
+        customComponentNames: ["h1", "h2", "h3", "h4", "h5", "h6", "p", "a"],
+      },
+    }),
+    sitemap(),
+    tailwind(),
+    react(),
+  ],
   output: "static",
-  adapter: vercel()
+  adapter: vercel(),
 });

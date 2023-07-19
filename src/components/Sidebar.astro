@@ -1,36 +1,44 @@
 ---
+import type { MarkdownHeading } from "astro";
 import Author from "./Author.astro";
 import Sns from "./Sns.astro";
+
+export type Props = {
+  headings: MarkdownHeading[];
+};
+const { headings } = Astro.props;
+console.log(headings);
 ---
 
 <aside class="space-y-5 xl:w-1/4">
   <Author />
 
   <Sns />
-  <!-- {tocData && (
-        <div class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
-          <div class=" text-lg font-bold mb-5">もくじ</div>
-          <ul class="space-y-3 pl-5">
-            {tocData.map((toc, index) => (
-              <li
-                key={index}
-                class={`${
-                  toc.lvl === 2
-                    ? 'pl-1'
-                    : toc.lvl === 3
-                    ? 'pl-4 text-gray-600'
-                    : ''
-                } ${toc.lvl === 1 ? 'list-disc' : ''}`}
+  {
+    headings && (
+      <div class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
+        <div class=" text-lg font-bold mb-5">もくじ</div>
+        <ul class="space-y-3 pl-5">
+          {headings.map((heading, index) => (
+            <li
+              class={`${
+                heading.depth === 2
+                  ? "pl-1"
+                  : heading.depth === 3
+                  ? "pl-4 text-gray-600"
+                  : ""
+              } ${heading.depth === 1 ? "list-disc" : ""}`}
+            >
+              <a
+                href={`#${heading.slug}`}
+                class={`text-sm ${heading.depth === 1 && "font-bold"}`}
               >
-                <a
-                  href={`#${toc.slug}`}
-                  class={`text-sm ${toc.lvl === 1 && 'font-bold'}`}
-                >
-                  {toc.content}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )} -->
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 </aside>
