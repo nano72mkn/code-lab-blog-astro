@@ -10,6 +10,7 @@ import Head6 from "../../components/MdxComponents/Head6.astro";
 import Blockquote from "../../components/MdxComponents/Blockquote.astro";
 import Code from "../../components/MdxComponents/Code.astro";
 import Link from "../../components/MdxComponents/Link.astro";
+import Hr from "../../components/MdxComponents/Hr.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -36,6 +37,7 @@ const { Content } = await post.render();
       blockquote: Blockquote,
       code: Code,
       a: Link,
+      hr: Hr,
     }}
   />
 </BlogPost>
