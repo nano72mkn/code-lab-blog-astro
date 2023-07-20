@@ -21,4 +21,9 @@ export default defineConfig({
   ],
   output: "static",
   adapter: vercel(),
+  vite: {
+    optimizeDeps: {
+      exclude: ["satori @resvg/resvg-js"],
+    },
+  },
 });

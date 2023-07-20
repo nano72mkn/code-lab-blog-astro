@@ -7,15 +7,26 @@ import PostMainVisual from "../components/PostMainVisual.astro";
 import Sidebar from "../components/Sidebar.astro";
 import type { MarkdownHeading } from "astro";
 
-type Props = CollectionEntry<"blog">["data"] & { headings: MarkdownHeading[] };
+type Props = CollectionEntry<"blog">["data"] & {
+  headings: MarkdownHeading[];
+  slug: string;
+};
 
-const { title, description, pubDate, updatedDate, emoji, tags, headings } =
-  Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  emoji,
+  tags,
+  headings,
+  slug,
+} = Astro.props;
 ---
 
 <html lang="ja">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} slug={slug} />
   </head>
 
   <body class="bg-gray-50 container mx-auto px-5">
