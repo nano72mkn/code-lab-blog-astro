@@ -9,6 +9,7 @@ const isAnkerLink = /^#/.test(href);
 let component = "default";
 
 const isExternalLink = /^http/.test(href);
+const isLink = /^\/posts/.test(href);
 const url = isExternalLink ? new URL(href) : undefined;
 
 switch (url?.host) {
@@ -16,7 +17,7 @@ switch (url?.host) {
     component = "twitter";
     break;
   default:
-    component = isAnkerLink ? "default" : "ogp";
+    component = isAnkerLink || isLink ? "default" : "ogp";
     break;
 }
 ---
