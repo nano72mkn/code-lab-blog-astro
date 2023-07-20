@@ -12,7 +12,7 @@ const title = `${titleProps ? `${titleProps} | ` : ""}Code Lab Blog`;
 const url = `${origin}${slug ? `/posts/${slug}` : ""}`;
 const description =
   descriptionProps || "フロントエンジニア、@shota1995mの個人ブログ&実験サイト";
-const ogpCardUrl = `${origin}/og/${slug}.png`;
+const ogpCardUrl = `${origin}/og/${slug || "ogp"}.png`;
 ---
 
 <meta charset="UTF-8" />
