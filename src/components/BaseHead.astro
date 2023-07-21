@@ -11,7 +11,7 @@ const { title: titleProps, description: descriptionProps, slug } = Astro.props;
 const title = `${titleProps ? `${titleProps} | ` : ""}Code Lab Blog`;
 const url = `${origin}${slug ? `/blog/${slug}` : ""}`;
 const description =
-  descriptionProps || "フロントエンジニア、@shota1995mの個人ブログ&実験サイト";
+  descriptionProps || "フロントエンジニア、@nano72mknの個人ブログ&実験サイト";
 const ogpCardUrl = `${origin}/og/${slug || "ogp"}.png`;
 ---
 
