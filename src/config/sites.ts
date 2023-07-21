@@ -1,7 +1,7 @@
 import type { Url } from "../type";
 
 export const sites: Url[] = [
-  "https://blog.code-lab.xyz/feed",
+  "https://code-lab.xyz/rss.xml",
   "https://zenn.dev/shota1995m/feed",
   "https://qiita.com/nano72mkn/feed",
   "https://github.com/nano72mkn/code-lab-timeline/releases.atom",

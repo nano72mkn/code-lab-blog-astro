@@ -8,7 +8,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://code-lab-blog-astro.vercel.app/",
+  site: "https://code-lab.xyz/",
   integrations: [
     mdx({
       optimize: {
