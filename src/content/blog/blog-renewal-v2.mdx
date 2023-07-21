@@ -1,0 +1,63 @@
+---
+title: "ブログをAstroに移植したぞー"
+published: true
+pubDate: "2023-07-22T00:00:00"
+tags: ["日記", "code lab blog", "astro"]
+emoji: "✨"
+---
+
+前回のリニューアルから１年と３ヶ月。
+
+またリニューアルしてしまいました。
+
+↓ 前回のリニューアルの記事
+https://code-lab.xyz/blog/blog-renewal
+
+今回は MDX で記事を書くというのはそのままに、Next.js から Astro に移植しただけです。
+
+## Astro とは
+
+https://astro.build/
+
+Astro はマルチページアプリケーション（MPA）のフレームワークです。
+
+MPA は 複数の HTML から構成される Web サイトのこと。
+有名どころだと Ruby on Rails だったり、WordPress、Laravel とかがあります。
+
+↓ 他の MPA と何が違うの？ってとこは公式が記事を出しているのでこちらをどうぞ
+https://docs.astro.build/ja/concepts/mpa-vs-spa/
+
+Astro の一番の特徴は、UI ライブラリが指定されていないとこにあります。
+
+- React
+- Preact
+- Svelte
+- Vue
+- SolidJS
+- AlpineJS
+  など
+
+このように使用できる UI ライブラリは多く、フロントエンジニアとしてはとりあえず触っていきたいものばかりです。
+
+このブログのコンセプトである実験の場として Astro はとてもマッチしていたので今回採用してみました。
+
+## Astro の使い心地
+
+ブログを移行するに伴い、一通り触ってみた感じは”楽”という感想です。
+Next からのコンポーネント移行もコピペですし、MDX などは`@astrojs/mdx`があるのでライブラリの選定なども不要でした。
+
+また、`.astro`という Astro コンポーネントと呼ばれるものも存在していますが、こちらも特に癖もなくサクッと実装できました。
+
+```
+---
+// Component Script (JavaScript)
+---
+<!-- Component Template (HTML + JS Expressions) -->
+```
+
+このブログでは TailwindCSS を使っているのですが、こちらも Astro が`@astrojs/tailwind`を準備してくれていたので、追加するだけで設定などはほぼ不要でした。
+
+## まとめ
+
+とりあえず、Astro に載せ替えたよっていう記録のために書いてみました。
+動的 OG 画像の方も地味に生成方法変えたので Zenn などで記事を公開していきたいと思っております。

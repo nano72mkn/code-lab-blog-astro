@@ -22,6 +22,8 @@ switch (url?.host) {
 }
 ---
 
-{component === "twitter" && <Tweet href={href} />}
-{component === "ogp" && <OgpCard href={href} />}
-{component === "default" && <a href={href}>{href}</a>}
+<a href={href}>
+  {component === "twitter" && <Tweet href={href} />}
+  {component === "ogp" && <OgpCard href={href} />}
+  {component === "default" && href}
+</a>
