@@ -9,7 +9,7 @@ const isAnkerLink = /^#/.test(href);
 let component = "default";
 
 const isExternalLink = /^http/.test(href);
-const isLink = /^\/posts/.test(href);
+const isLink = /^\/blog/.test(href);
 const url = isExternalLink ? new URL(href) : undefined;
 
 switch (url?.host) {
