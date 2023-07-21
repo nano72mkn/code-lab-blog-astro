@@ -23,7 +23,7 @@ export default defineConfig({
   adapter: vercel(),
   vite: {
     optimizeDeps: {
-      exclude: ["satori @resvg/resvg-js"],
+      exclude: ["satori", "@resvg/resvg-js", "rss-parser"],
     },
   },
 });
