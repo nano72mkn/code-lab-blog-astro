@@ -55,12 +55,7 @@ export default defineConfig({
   },
   vite: {
     optimizeDeps: {
-      exclude: [
-        "satori",
-        "@resvg/resvg-js",
-        "rss-parser",
-        "gatsby-remark-code-titles",
-      ],
+      exclude: ["satori", "@resvg/resvg-js", "rss-parser"],
     },
   },
 });
