@@ -47,7 +47,8 @@ export default defineConfig({
         {
           title: true,
           titleClassName: "rounded-t-md bg-gray-200 px-3 py-2 text-gray-600",
-          containerClassName: "rounded-md bg-sky-950 my-5 shadow-md",
+          containerClassName:
+            "rounded-md bg-sky-950 my-5 shadow-md overflow-hidden",
         },
       ],
     ],
