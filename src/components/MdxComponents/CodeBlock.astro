@@ -1,0 +1,12 @@
+---
+const props = Astro.props;
+console.log(Astro);
+
+const { class: className } = props;
+
+// ${name ? "rounded-t-none" : ""}
+---
+
+<pre class={`text-sm p-5 rounded-md bg-sky-950 ${className}`}>
+  <slot />
+</pre>

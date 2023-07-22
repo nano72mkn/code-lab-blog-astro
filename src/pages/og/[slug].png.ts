@@ -29,12 +29,7 @@ export async function get({ params }: APIContext) {
 
   try {
     const buffer = await createOgp({ title });
-    console.log(buffer);
     return {
-      // headers: {
-      //   "Content-Type": "image/png",
-      //   "Cache-Control": "public, max-age=31536000, immutable",
-      // },
       body: buffer,
       encoding: "binary",
     };

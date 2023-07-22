@@ -11,6 +11,10 @@ import Blockquote from "../../components/MdxComponents/Blockquote.astro";
 import Code from "../../components/MdxComponents/Code.astro";
 import Link from "../../components/MdxComponents/Link.astro";
 import Hr from "../../components/MdxComponents/Hr.astro";
+import Ul from "../../components/MdxComponents/Ul.astro";
+import List from "../../components/MdxComponents/List.astro";
+import Text from "../../components/MdxComponents/Text.astro";
+import CodeBlock from "../../components/MdxComponents/CodeBlock.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -35,9 +39,13 @@ const { Content, headings } = await post.render();
       h5: Head5,
       h6: Head6,
       blockquote: Blockquote,
+      pre: CodeBlock,
       code: Code,
       a: Link,
       hr: Hr,
+      ul: Ul,
+      li: List,
+      p: Text,
     }}
   />
 </BlogPost>

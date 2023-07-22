@@ -10,7 +10,6 @@ const parser = new Parser();
 export const getActivity = async ({
   url,
 }: GetActivityProps): Promise<ActivityType[]> => {
-  console.log(url);
   const feed = await parser.parseURL(url);
 
   if (!feed?.items?.length) return [];
