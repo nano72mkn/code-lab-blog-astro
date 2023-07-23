@@ -4,12 +4,9 @@ import { Tweet } from "../Tweet";
 
 const { href } = Astro.props;
 
-const isAnkerLink = /^#/.test(href);
-
 let component = "default";
 
 const isExternalLink = /^http/.test(href);
-const isLink = /^\/blog/.test(href);
 const url = isExternalLink ? new URL(href) : undefined;
 
 switch (url?.host) {
@@ -17,13 +14,26 @@ switch (url?.host) {
     component = "twitter";
     break;
   default:
-    component = isAnkerLink || isLink ? "default" : "ogp";
+    if (
+      Astro.slots.has("default") &&
+      (await Astro.slots.render("default")) !== href
+    ) {
+      component = "slot";
+      break;
+    }
+    component = "ogp";
     break;
 }
 ---
 
-<a href={href}>
+<a
+  href={href}
+  class={component === "slot"
+    ? "underline underline-offset-4 text-cyan-900 hover:no-underline"
+    : ""}
+>
   {component === "twitter" && <Tweet href={href} />}
   {component === "ogp" && <OgpCard href={href} />}
   {component === "default" && href}
+  {component === "slot" && <slot />}
 </a>
