@@ -29,7 +29,7 @@ const inactiveClass = "hover:underline";
         <a
           class:list={[
             baseClass,
-            pathname === "/blog" ? activeClass : inactiveClass,
+            /^\/blog/.test(pathname) ? activeClass : inactiveClass,
           ]}
           href="/blog"
         >
