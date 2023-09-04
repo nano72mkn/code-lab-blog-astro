@@ -25,7 +25,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
         </span>
         <p className="font-bold break-all flex-1">{activity.title}</p>
       </div>
-      <p className="text-sm text-gray-900/50">
+      <p className="text-sm text-gray-900">
         {subYears(new Date(), 1) > new Date(activity.isoDate)
           ? format(new Date(activity.isoDate), "yyyy/MM/dd")
           : formatDistanceToNow(new Date(activity.isoDate), {

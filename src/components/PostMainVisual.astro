@@ -8,12 +8,12 @@ type Props = {
   pubDate: Date;
   updatedDate?: Date;
 };
-const { emoji, title, tags, pubDate, updatedDate } = Astro.props;
+const { emoji, title, tags, pubDate, updatedDate, slug } = Astro.props;
 ---
 
 <div class="flex items-center flex-col w-full my-5 p-5">
-  <div class="text-6xl mb-5">{emoji}</div>
-  <h1 class="text-3xl font-bold mb-5 text-center">{title}</h1>
+  <div class="text-6xl mb-5" transition:name={`emoji-${slug}`}>{emoji}</div>
+  <h1 class="text-3xl font-bold mb-5 text-center" transition:name={`title-${slug}`}>{title}</h1>
   <div class="flex space-x-2">
     {tags && tags.map((tag, index) => <p class="text-gray-500">{tag}</p>)}
   </div>
