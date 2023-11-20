@@ -8,5 +8,6 @@ export const sites: Url[] = [
   "https://github.com/nano72mkn/planning-poker-remix/releases.atom",
   "https://github.com/nano72mkn/github-readme-blog-score/releases.atom",
   "https://github.com/nano72mkn/code-lab-blog/releases.atom",
+  "https://sizu.me/nano72mkn/rss",
   // 'https://shota1995m.hatenablog.com/feed',
 ];
