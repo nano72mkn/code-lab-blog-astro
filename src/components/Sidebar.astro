@@ -26,18 +26,20 @@ const tocClass = (depth: number) => {
   <Sns />
   {
     headings && (
-      <div class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
-        <div class=" text-lg font-bold mb-5">もくじ</div>
-        <ul class="space-y-3 pl-5">
-          {headings.map((heading) => (
-            <li class={tocClass(heading.depth)}>
-              <a href={`#${heading.slug}`} class={`text-sm`}>
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <nav>
+        <div class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
+          <div class=" text-lg font-bold mb-5">もくじ</div>
+          <ul class="space-y-3 pl-5">
+            {headings.map((heading) => (
+              <li class={tocClass(heading.depth)}>
+                <a href={`#${heading.slug}`} class={`text-sm`}>
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
     )
   }
 </aside>
