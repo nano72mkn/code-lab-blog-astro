@@ -29,10 +29,11 @@ export async function GET({ params }: APIContext) {
 
   try {
     const buffer = await createOgp({ title });
-    return {
-      body: buffer,
-      encoding: "binary",
-    };
+    return new Response(buffer);
+    //   {
+    //   body: buffer,
+    //   encoding: "binary",
+    // };
   } catch (e) {
     console.error(e);
     return { status: 500 };
