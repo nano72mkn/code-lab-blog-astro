@@ -1,4 +1,6 @@
 ---
+import '@fontsource/m-plus-rounded-1c/400.css';
+import '@fontsource/m-plus-rounded-1c/700.css';
 import BaseHead from "../BaseHead.astro";
 import Header from "../Header.astro";
 import Footer from "../Footer.astro";
@@ -18,7 +20,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <BaseHead description={description} />
   </head>
 
-  <body class="bg-gray-50 container mx-auto px-5">
+  <body class="bg-gray-50 container mx-auto px-5 font-sans">
     <Header />
     <main class="mb-20">
       <slot />

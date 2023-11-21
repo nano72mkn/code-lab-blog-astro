@@ -1,4 +1,6 @@
 ---
+import '@fontsource/m-plus-rounded-1c/400.css';
+import '@fontsource/m-plus-rounded-1c/700.css';
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -29,7 +31,7 @@ const {
     <BaseHead title={title} description={description} slug={slug} />
   </head>
 
-  <body class="bg-gray-50 container mx-auto px-5">
+  <body class="bg-gray-50 container mx-auto px-5 font-sans">
     <Header />
     <PostMainVisual
       emoji={emoji}
