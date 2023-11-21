@@ -9,5 +9,6 @@ export const sites: Url[] = [
   "https://github.com/nano72mkn/github-readme-blog-score/releases.atom",
   "https://github.com/nano72mkn/code-lab-blog/releases.atom",
   "https://sizu.me/nano72mkn/rss",
+  "https://speakerdeck.com/nano72mkn.atom",
   // 'https://shota1995m.hatenablog.com/feed',
 ];
