@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   }));
 }
 
-export async function get({ params }: APIContext) {
+export async function GET({ params }: APIContext) {
   const { slug } = params;
   if (!slug) return { status: 404 };
 
