@@ -13,8 +13,8 @@ const {
   <article
     class="flex flex-col w-full h-full p-5 shadow-xl bg-white transition hover:shadow-md hover:opacity-80 rounded-md"
   >
-    <div transition:name={`emoji-${slug}`} class="w-full mb-5 p-5 text-6xl bg-gray-100 text-center rounded-md">
-      {emoji}
+    <div class="w-full mb-5 p-5 text-6xl bg-gray-100 text-center rounded-md">
+      <span transition:name={`emoji-${slug}`}>{emoji}</span>
     </div>
     <!-- <div class="mb-2 flex space-x-2">
           {tags &&
