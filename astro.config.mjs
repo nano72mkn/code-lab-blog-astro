@@ -38,7 +38,14 @@ export default defineConfig({
     react(),
   ],
   output: "static",
-  adapter: vercel({ analytics: true }),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    speedInsights: {
+      enabled: true,
+    },
+  }),
   markdown: {
     remarkPlugins: [
       remarkBreaks,
