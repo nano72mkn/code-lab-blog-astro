@@ -3,7 +3,10 @@ import { getCollection, getEntryBySlug } from "astro:content";
 import { createOgp } from "../../utils/createOgp";
 
 export async function getStaticPaths() {
-  const posts: { slug: any }[] = await getCollection("blog");
+  const posts: { slug: any }[] = await getCollection(
+    "blog",
+    ({ data }) => data.published === true
+  );
 
   posts.push({ slug: "ogp" });
 
