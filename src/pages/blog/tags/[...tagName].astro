@@ -18,7 +18,7 @@ type Props = {
 const { tagName } = Astro.props;
 
 const posts = (await getCollection("blog", ({data}) => {
-  return data.tags?.includes(tagName)
+  return data.tags?.includes(tagName) && data.published === true;
 })).sort((a, b) =>
   a.data.pubDate.valueOf() < b.data.pubDate.valueOf() ? 1 : -1
 );
