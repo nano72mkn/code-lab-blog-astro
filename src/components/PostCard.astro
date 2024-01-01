@@ -5,29 +5,30 @@ import type { CollectionEntry } from "astro:content";
 type Props = CollectionEntry<"blog">;
 const {
   slug,
-  data: { title, description, pubDate, updatedDate, emoji },
+  data: { title, description, pubDate, tags, emoji },
 } = Astro.props;
 ---
 
-<a href={`/blog/${slug}`}>
+
   <article
+    transition:name={`article-${slug}`}
     class="flex flex-col w-full h-full p-5 shadow-xl bg-white transition hover:shadow-md hover:opacity-80 rounded-md"
   >
-    <div class="w-full mb-5 p-5 text-6xl bg-gray-100 text-center rounded-md">
+    <a href={`/blog/${slug}`} class="w-full mb-5 p-5 text-6xl bg-gray-100 text-center rounded-md" aria-label={title}>
       <span transition:name={`emoji-${slug}`}>{emoji}</span>
+    </a>
+    <div class="mb-2 flex space-x-2">
+      {tags &&
+        tags.map((tag) => (
+          <a href={`/blog/tags/${tag}`} class="text-xs text-gray-600 m-0 hover:underline">
+            #{tag}
+          </a>
+        ))}
     </div>
-    <!-- <div class="mb-2 flex space-x-2">
-          {tags &&
-            tags.map((tag, index) => (
-              <p key={index} class="text-xs text-gray-400 m-0">
-                {tag}
-              </p>
-            ))}
-        </div> -->
-    <div class="flex-1 mb-5">
+    <a href={`/blog/${slug}`} class="flex-1 mb-5">
       <p class="text-md mb-1" transition:name={`title-${slug}`}>{title}</p>
       <p class="text-sm text-gray-600">{description}</p>
-    </div>
+    </a>
     <time
       class="text-sm text-gray-600"
       title={format(pubDate, "yyyy/MM/dd")}
@@ -43,4 +44,3 @@ const {
       }
     </time>
   </article>
-</a>
