@@ -34,6 +34,7 @@ export const OgpCard: React.FC<Props> = ({ url }) => {
                 width={12}
                 height={12}
                 alt={`${data.domain}のファビコン`}
+                decoding="async"
               />
             </div>
             <p>{data.domain}</p>
@@ -47,6 +48,7 @@ export const OgpCard: React.FC<Props> = ({ url }) => {
               width={793}
               height={500}
               alt={data.title}
+              decoding="async"
             />
           </div>
         )}

@@ -1,0 +1,38 @@
+{
+  "parser": {
+    ".astro$": "@markuplint/astro-parser",
+    ".tsx$": "@markuplint/jsx-parser"
+  },
+  "specs": {
+    ".tsx$": "@markuplint/react-spec"
+  },
+  "extends": [
+    "markuplint:recommended"
+  ],
+  "rules": {
+    "required-h1": true,
+    "disallowed-element": true,
+    "label-has-control": false,
+    "deprecated-element": true,
+    "no-empty-palpable-content": false,
+    "placeholder-label-option": true,
+    "required-element": true,
+    "deprecated-attr": true,
+    "attr-duplication": true,
+    "require-datetime": true,
+    "no-use-event-handler-attr": false,
+    "wai-aria": true,
+    "id-duplication": true,
+    "invalid-attr": true,
+    "no-refer-to-non-existent-id": true,
+    "permitted-contents": true,
+    "use-list": false,
+    "doctype": "always",
+    "no-hard-code-id": false,
+    "require-accessible-name": true,
+    "landmark-roles": false,
+    "required-attr": true,
+    "class-naming": false,
+    "character-reference": false
+  }
+}

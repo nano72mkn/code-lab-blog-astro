@@ -21,6 +21,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({ activity }) => {
             height={15}
             className="w-4 h-4"
             alt="favicon"
+            decoding="async"
           />
         </span>
         <p className="font-bold break-all flex-1">{activity.title}</p>
