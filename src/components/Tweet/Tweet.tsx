@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
-import { getTweetId } from "../../utils/getTweetId";
+import { getTweetId } from "@utils/getTweetId";
 
 export const Tweet: FC<{ href: string }> = ({ href }) => {
   const tweetId = getTweetId({ url: href });

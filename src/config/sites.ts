@@ -1,4 +1,4 @@
-import type { Url } from "../type";
+import type { Url } from "@type";
 
 export const sites: Url[] = [
   "https://code-lab.xyz/rss.xml",

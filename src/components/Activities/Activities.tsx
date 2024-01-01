@@ -1,5 +1,5 @@
-import { ActivityCard } from "../ActivityCard";
-import type { ActivityType } from "../../type";
+import { ActivityCard } from "@components/ActivityCard";
+import type { ActivityType } from "@type";
 
 interface ActivitiesProps {
   activities: ActivityType[];

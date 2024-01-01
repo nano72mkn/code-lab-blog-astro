@@ -1,5 +1,5 @@
 import Parser from "rss-parser";
-import type { ActivityType, Url } from "../type";
+import type { ActivityType, Url } from "@type";
 
 export interface GetActivityProps {
   url: Url;

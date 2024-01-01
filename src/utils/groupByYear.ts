@@ -1,4 +1,4 @@
-import type { ActivityType } from "../type";
+import type { ActivityType } from "@type";
 
 interface Props {
   activities: ActivityType[];

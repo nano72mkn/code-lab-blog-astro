@@ -1,5 +1,5 @@
-import { ActivityChronology } from "../../ActivityChronology";
-import type { ActivityChronology as ActivityChronologyType } from "../../../utils/groupByYear";
+import { ActivityChronology } from "@components/ActivityChronology";
+import type { ActivityChronology as ActivityChronologyType } from "@utils/groupByYear";
 
 interface Props {
   activityChronologies: ActivityChronologyType[];

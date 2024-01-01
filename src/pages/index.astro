@@ -1,9 +1,9 @@
 ---
-import BaseLayout from "../components/Layout/BaseLayout.astro";
-import { getActivities } from "../utils/getActivities";
-import { groupByYear } from "../utils/groupByYear";
-import { sites } from "../config/sites";
-import { TimeLine } from "../components/Page/TimeLine";
+import BaseLayout from "@components/Layout/BaseLayout.astro";
+import { getActivities } from "@utils/getActivities";
+import { groupByYear } from "@utils/groupByYear";
+import { sites } from "@config/sites";
+import { TimeLine } from "@components/Page/TimeLine";
 
 const activityChronologies = groupByYear({
   activities: await getActivities({ urls: sites }),

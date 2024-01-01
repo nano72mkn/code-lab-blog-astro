@@ -1,5 +1,5 @@
 import { format, formatDistanceToNow, subYears } from "date-fns";
-import type { ActivityType } from "../../type";
+import type { ActivityType } from "@type";
 
 interface ActivityCardProps {
   activity: ActivityType;
