@@ -24,6 +24,7 @@ export const getActivity = async ({
       favicon: `https://www.google.com/s2/favicons?sz=32&domain=https://${
         new URL(url).hostname
       }`,
+      hostname: new URL(url).hostname,
     })
   );
 

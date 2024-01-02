@@ -6,4 +6,5 @@ export interface ActivityType {
   isoDate: string;
   year: string;
   favicon: string;
+  hostname: string;
 }

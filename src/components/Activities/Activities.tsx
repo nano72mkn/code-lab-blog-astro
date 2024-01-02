@@ -7,10 +7,10 @@ interface ActivitiesProps {
 
 export const Activities: React.FC<ActivitiesProps> = ({ activities }) => {
   return (
-    <div className="space-y-5">
+    <div className="flex flex-col gap-12">
       {activities.map((activity, index) => (
         <div key={index} className="relative">
-          <div className="absolute -left-5 md:-left-10 top-1/2 -mt-1 -ml-1 w-2 h-2 bg-gray-200 rounded-full" />
+          <div className="absolute -left-2 md:-left-4 mt-[0.5em] -ml-1 w-2 h-2 bg-gray-200 rounded-full" />
           <ActivityCard activity={activity} />
         </div>
       ))}

@@ -10,10 +10,12 @@ export const ActivityChronology: React.FC<ActivityChronologyProps> = ({
 }) => {
   const { year, activities } = activityChronology;
   return (
-    <div className="relative ml-20 pb-20 border-l border-gray-200">
-      <p className="sticky top-3.5 font-bold -mt-5 -ml-16">{year}</p>
-      <div className="ml-5 md:ml-10">
-        <Activities activities={activities} />
+    <div className="m-none lg:m-auto w-[calc(100%-5rem)] max-w-[732px]">
+      <div className="relative ml-20 mt-10 pb-20 border-l border-gray-200 w-full">
+        <p className="sticky top-3.5 font-bold -mt-5 -ml-16">{year}</p>
+        <div className="ml-2 md:ml-4">
+          <Activities activities={activities} />
+        </div>
       </div>
     </div>
   );
