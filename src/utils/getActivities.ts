@@ -1,15 +1,15 @@
-import type { ActivityType, Url } from "type";
+import type { ActivityType, FeedData } from "@type";
 import { getActivity } from "./getActivity";
 
 export interface GetActivitiesProps {
-  urls: Url[];
+  feeds: FeedData[];
 }
 
 export const getActivities = async ({
-  urls,
+  feeds,
 }: GetActivitiesProps): Promise<ActivityType[]> => {
   const activities = await Promise.all(
-    urls.map(async (url) => await getActivity({ url }))
+    feeds.map(async (feed) => await getActivity({ feed }))
   );
   const activitiesMerge = activities.flat();
   return activitiesMerge.sort((a, b) =>
