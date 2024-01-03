@@ -54,7 +54,7 @@ export default defineConfig({
         remarkCodeTitle,
         {
           title: true,
-          titleClassName: "rounded-t-md bg-gray-200 px-3 py-2 text-gray-600",
+          titleClassName: "rounded-t-md bg-gray-200 px-5 py-4 text-gray-600",
           containerClassName:
             "rounded-md bg-sky-950 my-5 shadow-md overflow-hidden",
         },
