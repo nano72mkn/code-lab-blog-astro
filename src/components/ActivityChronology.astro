@@ -1,0 +1,23 @@
+---
+import Activities from "@components/Activities.astro";
+import type { ActivityChronology as ActivityChronologyType } from "@utils/groupByYear";
+
+interface Props {
+  activityChronology: ActivityChronologyType;
+}
+
+const {activityChronology} = Astro.props;
+
+const { year, activities } = activityChronology;
+
+---
+
+
+<div class="m-none lg:m-auto w-[calc(100%-5rem)] max-w-[732px]">
+  <div class="relative ml-20 mt-10 pb-20 border-l border-gray-200 w-full">
+    <p class="sticky top-3.5 font-bold -mt-5 -ml-16">{year}</p>
+    <div class="ml-2 md:ml-4">
+      <Activities activities={activities} />
+    </div>
+  </div>
+</div>
