@@ -6,7 +6,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"M PLUS Rounded 1c"', '"Noto Color Emoji"', ...defaultTheme.fontFamily.sans],
+        sans: [
+          '"Noto Sans JP"',
+          '"Noto Color Emoji"',
+          ...defaultTheme.fontFamily.sans,
+        ],
       },
       aspectRatio: {
         ogImage: "1.91 / 1",
