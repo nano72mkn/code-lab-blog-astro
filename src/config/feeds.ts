@@ -41,5 +41,10 @@ export const feeds: FeedData[] = [
     category: "article",
     icon: "✏️",
   },
+  {
+    url: "https://anchor.fm/s/e949fa2c/podcast/rss",
+    category: "podcast",
+    icon: "🎙",
+  },
   // 'https://shota1995m.hatenablog.com/feed',
 ];

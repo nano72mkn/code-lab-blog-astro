@@ -3,7 +3,7 @@ export type Url = `https://${string}.${string}`;
 export interface FeedData {
   url: Url;
   icon?: string;
-  category: "article" | "release" | "slide" | "other";
+  category: "article" | "release" | "slide" | "other" | "podcast";
 }
 
 export interface ActivityType {
