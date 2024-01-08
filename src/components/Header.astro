@@ -4,39 +4,64 @@ import { SITE_TITLE } from "@consts";
 
 const pathname = new URL(Astro.request.url).pathname;
 
-const baseClass = "transition hover:text-gray-400";
-const activeClass = "underline font-bold";
+const baseClass = "block w-[6em] py-2 transition hover:text-gray-400 z-1 text-center";
+const activeClass = "font-bold";
 const inactiveClass = "hover:underline";
+
+const currentPage = () => {
+  if (pathname === "/") {
+    return "home";
+  }
+  
+  if (/^\/blog/.test(pathname)) {
+    return "blog";
+  }
+}
+
+const navigationItems = [
+  {
+    isActive: currentPage() === "home",
+    href: "/",
+    label: "Home",
+  },
+  {
+    isActive: currentPage() === "blog",
+    href: "/blog",
+    label: "Blog",
+  },
+];
+
+let cursorClass = `absolute block top-0 z-[-1] w-1/${navigationItems.length} h-full bg-[#ddd] py-2 rounded-lg`;
+const currentNavIndex = navigationItems.findIndex((item) => item.isActive);
+
+switch (currentPage()) {
+  case "home":
+  case "blog":
+    cursorClass = `${cursorClass} left-[${currentNavIndex*6}em]`;
+    break;
+  default:
+    break;
+}
 ---
 
 <header class="flex items-center justify-between py-5 md:py-10">
   <a href="/">
     <h1 class="font-black text-2xl md:text-4xl">{SITE_TITLE}</h1>
   </a>
-  <nav>
-    <ul class="flex space-x-6">
-      <li>
+  <nav class="relative">
+    <ul class="flex z-1">
+      {navigationItems.map((item) => <li>
         <a
           class:list={[
             baseClass,
-            pathname === "/" ? activeClass : inactiveClass,
+            item.isActive ? activeClass : inactiveClass,
           ]}
-          href="/"
+          href={item.href}
         >
-          Home
+          {item.label}
         </a>
-      </li>
-      <li>
-        <a
-          class:list={[
-            baseClass,
-            /^\/blog/.test(pathname) ? activeClass : inactiveClass,
-          ]}
-          href="/blog"
-        >
-          Blog
-        </a>
-      </li>
+      </li>)}
     </ul>
+    <div class={cursorClass} transition:name="current-nav"></div>
   </nav>
 </header>
