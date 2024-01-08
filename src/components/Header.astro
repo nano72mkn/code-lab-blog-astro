@@ -36,8 +36,10 @@ const currentNavIndex = navigationItems.findIndex((item) => item.isActive);
 
 switch (currentPage()) {
   case "home":
+    cursorClass = `${cursorClass} left-0`;
+    break;
   case "blog":
-    cursorClass = `${cursorClass} left-[${currentNavIndex*6}em]`;
+    cursorClass = `${cursorClass} left-[6em]`;
     break;
   default:
     break;
