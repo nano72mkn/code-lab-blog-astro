@@ -31,7 +31,7 @@ const navigationItems = [
   },
 ];
 
-let cursorClass = `absolute block top-0 z-[-1] w-1/${navigationItems.length} h-full bg-[#ddd] py-2 rounded-lg`;
+let cursorClass = `absolute block top-0 z-[-1] w-[50%] h-full bg-[#ddd] py-2 rounded-lg`;
 const currentNavIndex = navigationItems.findIndex((item) => item.isActive);
 
 switch (currentPage()) {
