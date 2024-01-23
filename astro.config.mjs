@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel/serverless";
 import tailwind from "@astrojs/tailwind";
 import remarkBreaks from "remark-breaks";
 import remarkCodeTitle from "remark-flexible-code-titles";
@@ -38,7 +38,7 @@ export default defineConfig({
     tailwind(),
     react(),
   ],
-  output: "hybrid",
+  output: "server",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
