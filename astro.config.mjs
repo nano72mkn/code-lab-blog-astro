@@ -38,7 +38,7 @@ export default defineConfig({
     tailwind(),
     react(),
   ],
-  output: "static",
+  output: "hybrid",
   adapter: vercel({
     webAnalytics: {
       enabled: true,

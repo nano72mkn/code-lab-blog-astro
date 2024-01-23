@@ -16,6 +16,8 @@ import List from "@components/MdxComponents/List.astro";
 import Text from "@components/MdxComponents/Text.astro";
 import CodeBlock from "@components/MdxComponents/CodeBlock.astro";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({data}) => data.published === true);
   return posts.map((post) => ({
