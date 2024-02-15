@@ -2,6 +2,8 @@ import type { APIContext } from "astro";
 import { getCollection, getEntryBySlug } from "astro:content";
 import { createOgp } from "@utils/createOgp";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const posts: { slug: any }[] = await getCollection(
     "blog",
