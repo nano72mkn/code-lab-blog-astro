@@ -1,5 +1,5 @@
 ---
-import { format, formatDistanceToNow, subYears } from "date-fns";
+import ActivityTime from "@components/ActivityTime.astro";
 import type { ActivityType } from "@type";
 
 interface Props {
@@ -7,41 +7,10 @@ interface Props {
 }
 
 const { activity } = Astro.props;
-  let postText = undefined;
-
-  switch (activity.category) {
-    case "article":
-      postText = `Posted on ${activity.hostname}`;
-      break;
-    case "slide":
-      postText = `Posted on ${activity.hostname}`;
-      break;
-    case "release":
-      postText = "Released";
-      break;
-    case "podcast":
-      postText = "Podcast";
-      break;
-    case "other":
-      break;
-  }
 ---
 
 <div class="flex flex-col gap-2">
-  <div class="flex items-center gap-2 pl-4 text-sm text-gray-900">
-    <span>{postText}</span>
-    <time
-      title={format(new Date(activity.isoDate), "yyyy/MM/dd")}
-      datetime={format(new Date(activity.isoDate), "yyyy-MM-dd")}
-    >
-      {subYears(new Date(), 1) > new Date(activity.isoDate)
-        ? format(new Date(activity.isoDate), "yyyy/MM/dd")
-        : formatDistanceToNow(new Date(activity.isoDate), {
-            includeSeconds: true,
-            addSuffix: true,
-          })}
-    </time>
-  </div>
+  <ActivityTime activity={activity} />
   <a
     href={activity.link}
     target="_blank"
