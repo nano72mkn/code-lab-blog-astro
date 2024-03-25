@@ -5,12 +5,14 @@ import { format, formatDistanceToNow, subYears } from "date-fns";
 
 type Props = {
   isoDate: string | Date;
+  className?: string;
 };
 
-export function ElapsedTime({ isoDate }: Props) {
+export function ElapsedTime({ isoDate, className }: Props) {
   const newDate = new Date(isoDate);
 
   return <time
+    className={className}
     title={format(newDate, "yyyy/MM/dd")}
     dateTime={format(newDate, "yyyy-MM-dd")}
   >

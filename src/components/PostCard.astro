@@ -29,5 +29,5 @@ const {
       <p class="text-md mb-1" transition:name={`title-${slug}`}>{title}</p>
       <p class="text-sm text-gray-600">{description}</p>
     </a>
-    <ElapsedTime client:only="preact" isoDate={pubDate} />
+    <ElapsedTime client:only="preact" isoDate={pubDate} className="text-sm text-gray-600" />
   </article>
