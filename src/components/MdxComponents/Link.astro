@@ -26,7 +26,7 @@ switch (url?.host) {
 }
 ---
 
-<a
+{ component && <a
   href={href}
   class={component === "slot"
     ? "underline underline-offset-4 text-cyan-900 hover:no-underline"
@@ -36,4 +36,4 @@ switch (url?.host) {
   {component === "ogp" && <OgpCard href={href} />}
   {component === "default" && href}
   {component === "slot" && <slot />}
-</a>
+</a>}

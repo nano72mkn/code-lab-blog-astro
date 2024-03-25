@@ -1,6 +1,7 @@
 ---
 import ActivityTime from "@components/ActivityTime.astro";
 import type { ActivityType } from "@type";
+import { Image } from 'astro:assets';
 
 interface Props {
   activity: ActivityType;
@@ -20,13 +21,14 @@ const { activity } = Astro.props;
     <p class="font-bold break-all flex-1">{activity.title}</p>
     <div class="flex items-center">
       <span class="flex items-center mr-2 w-4 h-4">
-        <img
+        <Image
           src={activity.favicon}
           width={12}
           height={12}
           class="w-4 h-4"
           alt="favicon"
           decoding="async"
+          loading="eager"
         />
       </span>
       <p class="text-sm text-gray-600">{activity.hostname}</p>

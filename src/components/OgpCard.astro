@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import ogpParser from "ogp-parser";
 
 const { href } = Astro.props;
@@ -24,12 +25,13 @@ const favicon = `http://www.google.com/s2/favicons?sz=32&domain=https://${domain
       </div>
       <div class="flex items-center">
         <div class="mr-1">
-          <img
+          <Image
             src={favicon}
             width={12}
             height={12}
             alt={`${domain}のファビコン`}
             decoding="async"
+            loading="eager"
           />
         </div>
         <p>{domain}</p>
@@ -38,13 +40,14 @@ const favicon = `http://www.google.com/s2/favicons?sz=32&domain=https://${domain
     {
       data.ogp["og:image"] && (
         <div class="relative w-full lg:max-w-sm aspect-ogImage bg-slate-50">
-          <img
+          <Image
             src={data.ogp["og:image"][0]}
             class="object-fit"
             width={793}
             height={500}
             alt={data.title}
             decoding="async"
+            loading="eager"
           />
         </div>
       )
