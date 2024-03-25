@@ -7,6 +7,7 @@ import remarkBreaks from "remark-breaks";
 import remarkCodeTitle from "remark-flexible-code-titles";
 
 import react from "@astrojs/react";
+import preact from '@astrojs/preact';
 
 // https://astro.build/config
 export default defineConfig({
@@ -36,7 +37,12 @@ export default defineConfig({
     }),
     sitemap(),
     tailwind(),
-    react(),
+    react({
+      include: ['**/react/*'],
+    }),
+    preact({
+      include: ['**/preact/*'],
+    }),
   ],
   output: "server",
   adapter: vercel({

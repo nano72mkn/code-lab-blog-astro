@@ -1,7 +1,7 @@
 ---
 import { format, formatDistanceToNow, subYears } from "date-fns";
 import type { ActivityType } from "@type";
-import { ElapsedTime } from "./ElapsedTime";
+import { ElapsedTime } from "./preact/ElapsedTime";
 
 export const prerender = false;
 
@@ -32,5 +32,5 @@ const { activity } = Astro.props;
 
 <div class="flex items-center gap-2 pl-4 text-sm text-gray-900">
   <span>{postText}</span>
-  <ElapsedTime client:load isoDate={activity.isoDate} />
+  <ElapsedTime client:only="preact" isoDate={activity.isoDate} />
 </div>

@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { ElapsedTime } from "./ElapsedTime";
+import { ElapsedTime } from "./preact/ElapsedTime";
 
 type Props = CollectionEntry<"blog">;
 const {
@@ -29,5 +29,5 @@ const {
       <p class="text-md mb-1" transition:name={`title-${slug}`}>{title}</p>
       <p class="text-sm text-gray-600">{description}</p>
     </a>
-    <ElapsedTime client:only isoDate={pubDate} />
+    <ElapsedTime client:only="preact" isoDate={pubDate} />
   </article>

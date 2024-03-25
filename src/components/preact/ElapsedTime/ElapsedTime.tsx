@@ -1,11 +1,13 @@
-import type { FC } from "react";
+// Preact向け
+/** @jsxImportSource preact */
+
 import { format, formatDistanceToNow, subYears } from "date-fns";
 
 type Props = {
   isoDate: string | Date;
 };
 
-export const ElapsedTime: FC<Props> = ({ isoDate }) => {
+export function ElapsedTime({ isoDate }: Props) {
   const newDate = new Date(isoDate);
 
   return <time
