@@ -1,6 +1,7 @@
 ---
 import { format, formatDistanceToNow, subYears } from "date-fns";
 import type { ActivityType } from "@type";
+import { ElapsedTime } from "./ElapsedTime";
 
 export const prerender = false;
 
@@ -31,15 +32,5 @@ const { activity } = Astro.props;
 
 <div class="flex items-center gap-2 pl-4 text-sm text-gray-900">
   <span>{postText}</span>
-  <time
-    title={format(new Date(activity.isoDate), "yyyy/MM/dd")}
-    datetime={format(new Date(activity.isoDate), "yyyy-MM-dd")}
-  >
-    {subYears(new Date(), 1) > new Date(activity.isoDate)
-      ? format(new Date(activity.isoDate), "yyyy/MM/dd")
-      : formatDistanceToNow(new Date(activity.isoDate), {
-          includeSeconds: true,
-          addSuffix: true,
-        })}
-  </time>
+  <ElapsedTime client:load isoDate={activity.isoDate} />
 </div>
