@@ -3,6 +3,8 @@ import BaseLayout from "@components/Layout/BaseLayout.astro";
 import TimeLine from "@components/Page/TimeLine.astro";
 
 export const prerender = true;
+
+Astro.response.headers.set('Cache-Control', 's-maxage=60')
 ---
 
 <BaseLayout>
