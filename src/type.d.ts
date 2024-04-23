@@ -17,3 +17,15 @@ export interface ActivityType {
   category: FeedData["category"];
   icon: FeedData["icon"];
 }
+
+type RobotsMeta = {
+  name: 'robots',
+  content: 'noindex' | 'index'
+}
+
+type ArticleMeta = {
+  property: 'article:published_time' | 'article:modified_time' | 'article:expiration_time' | 'article:author' | 'article:section' | 'article:tag',
+  content: string;
+}
+
+export type MetaDataType = (RobotsMeta | ArticleMeta)[];

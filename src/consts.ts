@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = "Code Lab 🤔";
 export const SITE_DESCRIPTION =
-  "フロントエンジニア、@nano72mknの個人ブログ&実験サイト";
+  "フロントエンジニア、@nano72mknの個人ブログ兼実験サイト";

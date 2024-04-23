@@ -34,5 +34,14 @@
     "required-attr": true,
     "class-naming": false,
     "character-reference": false
-  }
+  },
+  "nodeRules": [
+    {
+      "selector": "head meta",
+      "rules": {
+        "required-attr": false,
+        "invalid-attr": false
+      }
+    }
+  ]
 }

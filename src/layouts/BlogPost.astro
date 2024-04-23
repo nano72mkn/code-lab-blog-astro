@@ -8,6 +8,8 @@ import PostMainVisual from "@components/PostMainVisual.astro";
 import Sidebar from "@components/Sidebar.astro";
 import type { MarkdownHeading } from "astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import type { MetaDataType } from "@type";
+import { format } from "date-fns";
 
 type Props = CollectionEntry<"blog">["data"] & {
   headings: MarkdownHeading[];
@@ -24,10 +26,27 @@ const {
   headings,
   slug,
 } = Astro.props;
+
+const tagsMeta: MetaDataType = (tags ? tags.map((tag) => 
+  ({property: 'article:tag', content: tag})
+): [])
 ---
 
 <html lang="ja">
-  <BaseHead title={title} description={description} slug={slug} />
+  <BaseHead
+    title={title}
+    description={description}
+    slug={slug}
+    appendMeta={[
+      {name: 'robots', content: 'index'},
+      {property: 'article:author', content: 'nano72mkn'},
+      {property: 'article:published_time', content: format(pubDate, 'yyyy-MM-dd')},
+      ...(updatedDate ? [
+        {property: 'article:modified_time', content: format(updatedDate, 'yyyy-MM-dd')}
+      ] as MetaDataType: []),
+      ...tagsMeta,
+    ]}
+  />
 
   <body class="bg-gray-50 container mx-auto px-5 font-sans">
     <Header />
