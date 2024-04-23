@@ -11,11 +11,11 @@ const { headings } = Astro.props;
 const tocClass = (depth: number) => {
   switch (depth) {
     case 1:
-      return "font-bold text-lg";
+      return "toc-1 text-lg text-gray-500";
     case 2:
-      return "font-bold";
+      return "toc-2 text-gray-500";
     default:
-      return "pl-2";
+      return "pl-2 text-gray-500";
   }
 };
 ---
@@ -26,9 +26,9 @@ const tocClass = (depth: number) => {
   <Sns />
   {
     headings && (
-      <nav class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
-        <div class=" text-lg font-bold mb-5">もくじ</div>
-        <ul class="space-y-3 pl-5">
+      <nav id="toc" class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
+        <div class=" text-xl font-bold mb-5">目次</div>
+        <ul class="space-y-3">
           {headings.map((heading) => (
             <li class={tocClass(heading.depth)}>
               <a href={`#${heading.slug}`} class={`text-sm`}>
@@ -41,3 +41,49 @@ const tocClass = (depth: number) => {
     )
   }
 </aside>
+
+<script>
+    document.addEventListener(
+      "astro:page-load",
+      () => {
+        const activeClass = ["pl-3", "ml-[-16px]", "border-l-4", "text-black", "font-bold"];
+        const unActiveClass = ["text-gray-500"];
+        const h2 = document.querySelectorAll("article h1, article h2");
+        const tocLinks = document.querySelectorAll("#toc .toc-1, #toc .toc-2");
+
+        console.log(tocLinks);
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const el = entry.target;
+
+            if (el instanceof HTMLElement) {
+              const index = Number(el.dataset.index);
+
+              if (entry.isIntersecting) {
+                tocLinks.forEach((tocLink, i) => {
+                  if (i === index) {
+                    tocLink.classList.remove(...unActiveClass);
+                    tocLink.classList.add(...activeClass);
+                  } else {
+                    tocLink.classList.remove(...activeClass);
+                    tocLink.classList.add(...unActiveClass);
+                  }
+                });
+
+                return;
+              }
+            }
+          });
+        });
+
+        h2.forEach((el, i) => {
+          if (el instanceof HTMLElement) {
+            el.dataset.index = `${i}`;
+            observer.observe(el);
+          }
+        });
+      },
+      { once: true },
+    );
+</script>
