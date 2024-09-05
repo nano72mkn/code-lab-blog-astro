@@ -1,0 +1,36 @@
+---
+import BaseLayout from "@components/Layout/BaseLayout.astro";
+import Title from "@components/Title.astro";
+import { Image } from "astro:assets";
+---
+<BaseLayout
+  title="nano72mknについて"
+  description="nano72mknのskilや履歴などの紹介">
+  <Title title="About" />
+  <section class="container">
+    <div class="animate-about-card bg-orange-400 rounded flex items-center">
+      <Image
+        src="/icon/icon_bg_none.png"
+        width="150"
+        height="150"
+        alt="@nano72mknのアイコン画像"
+        decoding="async"
+        class="animate-about-card-icon w-auto"
+      />
+    </div>
+    <div class="m-auto w-fit flex gap-10">
+      <div>
+        <p class="text-gray-400 font-light">宮平 将汰</p>
+        <p class="text-4xl font-light mb-3 animate-tracking-in-expand">Shota Miyahira</p>
+        <p>I am a Japanese Developer.</p>
+        <p>デザイナーとエンジニアをつなぐことを得意としています</p>
+      </div>
+    </div>
+  </section>
+  <section>
+    React
+    React Native
+    php: 2019-07-02
+    astro: 2024-07-02
+  </section>
+</BaseLayout>

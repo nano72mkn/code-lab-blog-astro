@@ -1,5 +1,5 @@
 ---
-import '@fontsource/noto-sans-jp';
+import '@fontsource-variable/noto-sans-jp';
 import { SITE_TITLE } from "@consts";
 
 const pathname = new URL(Astro.request.url).pathname;
@@ -11,6 +11,10 @@ const inactiveClass = "hover:underline";
 const currentPage = () => {
   if (pathname === "/") {
     return "home";
+  }
+
+  if (pathname === "/about") {
+    return "about";
   }
   
   if (/^\/blog/.test(pathname)) {
@@ -29,10 +33,14 @@ const navigationItems = [
     href: "/blog",
     label: "Blog",
   },
+  {
+    isActive: currentPage() === "about",
+    href: "/about",
+    label: "About",
+  },
 ];
 
-let cursorClass = `absolute block top-0 z-[-1] w-[50%] h-full bg-[#ddd] py-2 rounded-lg`;
-const currentNavIndex = navigationItems.findIndex((item) => item.isActive);
+let cursorClass = `absolute block top-0 z-[-1] w-[33%] h-full bg-[#ddd] py-2 rounded-lg`;
 
 switch (currentPage()) {
   case "home":
@@ -40,6 +48,9 @@ switch (currentPage()) {
     break;
   case "blog":
     cursorClass = `${cursorClass} left-[6em]`;
+    break;
+  case "about":
+    cursorClass = `${cursorClass} left-[12em]`;
     break;
   default:
     break;

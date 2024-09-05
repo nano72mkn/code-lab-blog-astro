@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@components/Layout/BaseLayout.astro";
 import TimeLine from "@components/Page/TimeLine.astro";
+import Title from "@components/Title.astro";
 
 export const prerender = true;
 
@@ -8,5 +9,6 @@ Astro.response.headers.set('Cache-Control', 's-maxage=60')
 ---
 
 <BaseLayout>
+  <Title title="Home" />
   <TimeLine />
 </BaseLayout>
