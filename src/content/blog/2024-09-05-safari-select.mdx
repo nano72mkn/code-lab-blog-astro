@@ -1,0 +1,29 @@
+---
+title: "safariでselectboxのテキストを右寄せにしたい時の対処方法"
+published: true
+pubDate: "2024-09-05T12:49:00"
+tags: ["css", "safari"]
+emoji: "👀"
+---
+
+シンプルに`text-align: right;`を使ってもうまくいかないため、対処方法を調べた
+
+## 対処方法
+
+1. `direction`を使う
+```
+direction: rtl;
+```
+
+`direction`の`rtl`は右書きの言語（ヘブライ語やアラビア語など）に使用される
+一般的には、dir属性で指定するためcssで直接指定することはない
+
+2. `text-align-last`を使う
+```
+text-align-last: end;
+```
+
+対象要素の文字列の最終行の位置を決めるためのcss
+
+## まとめ
+`text-align`でやらせてくれ
