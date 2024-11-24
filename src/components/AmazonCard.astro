@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+const { href } = Astro.props;
+
+const url = new URL(href as string);
+const domain = url.hostname;
+const favicon = `http://www.google.com/s2/favicons?sz=32&domain=https://${domain}`;
+---
+
+<div
+  class="my-10 border rounded-xl overflow-hidden shadow-md hover:shadow-sm transition hover:opacity-80"
+>
+  <div class="flex content-center flex-col-reverse lg:flex-row">
+    <div class="p-5 overflow-hidden flex-1 flex flex-col">
+      <span class="font-bold">
+        <slot />
+      </span>
+      <div class="flex items-center">
+        <div class="mr-1">
+          <Image
+            src={favicon}
+            width={12}
+            height={12}
+            alt={`${domain}のファビコン`}
+            decoding="async"
+            loading="eager"
+          />
+        </div>
+        <p>{domain}</p>
+      </div>
+    </div>
+  </div>
+</div>

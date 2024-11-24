@@ -1,20 +1,20 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
-import BlogPost from "@layouts/BlogPost.astro";
+import Blockquote from "@components/MdxComponents/Blockquote.astro";
+import Code from "@components/MdxComponents/Code.astro";
+import CodeBlock from "@components/MdxComponents/CodeBlock.astro";
 import Head1 from "@components/MdxComponents/Head1.astro";
 import Head2 from "@components/MdxComponents/Head2.astro";
 import Head3 from "@components/MdxComponents/Head3.astro";
 import Head4 from "@components/MdxComponents/Head4.astro";
 import Head5 from "@components/MdxComponents/Head5.astro";
 import Head6 from "@components/MdxComponents/Head6.astro";
-import Blockquote from "@components/MdxComponents/Blockquote.astro";
-import Code from "@components/MdxComponents/Code.astro";
-import Link from "@components/MdxComponents/Link.astro";
 import Hr from "@components/MdxComponents/Hr.astro";
-import Ul from "@components/MdxComponents/Ul.astro";
+import Link from "@components/MdxComponents/Link.astro";
 import List from "@components/MdxComponents/List.astro";
 import Text from "@components/MdxComponents/Text.astro";
-import CodeBlock from "@components/MdxComponents/CodeBlock.astro";
+import Ul from "@components/MdxComponents/Ul.astro";
+import BlogPost from "@layouts/BlogPost.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 export const prerender = true;
 

@@ -14,8 +14,12 @@ const tocClass = (depth: number) => {
       return "toc-1 text-lg text-gray-500";
     case 2:
       return "toc-2 text-gray-500";
+    case 3:
+      return "toc-3 pl-2 text-gray-500";
+    case 4:
+      return "toc-4 pl-6 text-gray-500";
     default:
-      return "pl-2 text-gray-500";
+      return "hidden";
   }
 };
 ---
@@ -26,10 +30,10 @@ const tocClass = (depth: number) => {
   <Sns />
   {
     headings && (
-      <nav id="toc" class="md:sticky md:top-10 p-10 shadow-md rounded-md bg-white">
+      <nav id="toc" class="md:sticky md:top-2 p-6 shadow-md rounded-md max-h-[calc(100vh-20px)] overflow-x-auto bg-white">
         <div class=" text-xl font-bold mb-5">目次</div>
         <ul class="space-y-3">
-          {headings.map((heading) => (
+          {headings.map((heading) => heading.depth <= 4 && (
             <li class={tocClass(heading.depth)}>
               <a href={`#${heading.slug}`} class={`text-sm`}>
                 {heading.text}
@@ -43,47 +47,55 @@ const tocClass = (depth: number) => {
 </aside>
 
 <script>
-    document.addEventListener(
-      "astro:page-load",
-      () => {
-        const activeClass = ["pl-3", "ml-[-16px]", "border-l-4", "text-black", "font-bold"];
-        const unActiveClass = ["text-gray-500"];
-        const h2 = document.querySelectorAll("article h1, article h2");
-        const tocLinks = document.querySelectorAll("#toc .toc-1, #toc .toc-2");
+    document.addEventListener("astro:page-load", () => {
+      const activeClass = ["pl-3", "ml-[-16px]", "border-l-4", "text-black", "font-bold"];
+      const unActiveClass = ["text-gray-500"];
+      const tocNav = document.getElementById("toc");
+      const toc = document.querySelectorAll("article h1, article h2, article h3");
+      const tocLinks = document.querySelectorAll("#toc .toc-1, #toc .toc-2, #toc .toc-3");
 
-        console.log(tocLinks);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            const el = entry.target;
-
-            if (el instanceof HTMLElement) {
-              const index = Number(el.dataset.index);
-
-              if (entry.isIntersecting) {
-                tocLinks.forEach((tocLink, i) => {
-                  if (i === index) {
-                    tocLink.classList.remove(...unActiveClass);
-                    tocLink.classList.add(...activeClass);
-                  } else {
-                    tocLink.classList.remove(...activeClass);
-                    tocLink.classList.add(...unActiveClass);
-                  }
-                });
-
-                return;
-              }
-            }
-          });
-        });
-
-        h2.forEach((el, i) => {
           if (el instanceof HTMLElement) {
-            el.dataset.index = `${i}`;
-            observer.observe(el);
+            const index = Number(el.dataset.index);
+
+            if (entry.isIntersecting) {
+              tocLinks.forEach((tocLink, i) => {
+                if (i === index) {
+                  const tocLinkRect = tocLink.getBoundingClientRect();
+                  const tocNavRect = tocNav ? tocNav.getBoundingClientRect() : { top: 0, bottom: 0 };
+
+                  if (tocLinkRect.top < tocNavRect.top || tocLinkRect.bottom > tocNavRect.bottom) {
+                    const tocLinkTop = (tocLink as HTMLElement).offsetTop;
+                    const tocNavHeight = tocNav ? tocNav.clientHeight : 0;
+                    const scrollPosition = tocLinkTop - tocNavHeight / 2;
+
+                    tocNav && tocNav.scrollTo({ top: scrollPosition, behavior: "smooth" });
+                  }
+
+                  tocLink.classList.remove(...unActiveClass);
+                  tocLink.classList.add(...activeClass);
+                } else {
+                  tocLink.classList.remove(...activeClass);
+                  tocLink.classList.add(...unActiveClass);
+                }
+              });
+
+              return;
+            }
           }
         });
-      },
-      { once: true },
-    );
+      }, {
+        rootMargin: "0px 0px -80% 0px",
+      });
+
+      toc.forEach((el, i) => {
+        if (el instanceof HTMLElement) {
+          el.dataset.index = `${i}`;
+          observer.observe(el);
+        }
+      });
+    }, { once: true });
 </script>

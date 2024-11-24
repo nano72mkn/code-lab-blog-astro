@@ -1,4 +1,5 @@
 ---
+import AmazonCard from "@components/AmazonCard.astro";
 import OgpCard from "@components/OgpCard.astro";
 import { Tweet } from "@components/react/Tweet";
 
@@ -12,6 +13,9 @@ const url = isExternalLink ? new URL(href) : undefined;
 switch (url?.host) {
   case "twitter.com":
     component = "twitter";
+    break;
+  case "www.amazon.co.jp":
+    component = "amazon";
     break;
   default:
     if (
@@ -33,6 +37,7 @@ switch (url?.host) {
     : ""}
 >
   {component === "twitter" && <Tweet href={href} />}
+  {component === "amazon" && <AmazonCard href={href}><slot /></AmazonCard>}
   {component === "ogp" && <OgpCard href={href} />}
   {component === "default" && href}
   {component === "slot" && <slot />}
