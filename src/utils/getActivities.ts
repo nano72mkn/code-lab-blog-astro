@@ -13,6 +13,6 @@ export const getActivities = async ({
   );
   const activitiesMerge = activities.flat();
   return activitiesMerge.sort((a, b) =>
-    new Date(a.isoDate) < new Date(b.isoDate) ? 1 : -1
+    a.isoDate < b.isoDate ? 1 : -1
   );
 };

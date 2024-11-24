@@ -1,5 +1,6 @@
-import Parser from "rss-parser";
+import { TZDate } from "@date-fns/tz";
 import type { ActivityType, FeedData } from "@type";
+import Parser from "rss-parser";
 
 export interface GetActivityProps {
   feed: FeedData;
@@ -32,5 +33,8 @@ export const getActivity = async ({
 
   return activities.filter(
     ({ title, link, isoDate }) => title && link && isoDate
-  ) as ActivityType[];
+  ).map(activity => ({
+    ...activity,
+    isoDate: TZDate.tz("Asia/Tokyo", activity.isoDate as string),
+  })) as ActivityType[];
 };

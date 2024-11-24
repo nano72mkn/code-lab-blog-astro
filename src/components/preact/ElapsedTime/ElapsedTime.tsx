@@ -1,15 +1,17 @@
 // Preact向け
 /** @jsxImportSource preact */
 
+import { TZDate } from "@date-fns/tz";
 import { format, formatDistanceToNow, subYears } from "date-fns";
 
 type Props = {
-  isoDate: string | Date;
+  isoDate: Date;
   className?: string;
 };
 
 export function ElapsedTime({ isoDate, className }: Props) {
-  const newDate = new Date(`${isoDate}+09:00`);
+  // date-fnsを使ってタイムゾーンを日本時間にする
+  const newDate = new TZDate(isoDate, "Asia/Tokyo");
 
   return <time
     className={className}

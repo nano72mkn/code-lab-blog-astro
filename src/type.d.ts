@@ -10,7 +10,7 @@ export interface ActivityType {
   title: string;
   contentSnippet: string | undefined;
   link: string;
-  isoDate: string;
+  isoDate: Date;
   year: string;
   favicon: string;
   hostname: string;
