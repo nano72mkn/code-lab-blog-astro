@@ -11,6 +11,7 @@ import Head6 from "@components/MdxComponents/Head6.astro";
 import Hr from "@components/MdxComponents/Hr.astro";
 import Link from "@components/MdxComponents/Link.astro";
 import List from "@components/MdxComponents/List.astro";
+import Ol from "@components/MdxComponents/Ol.astro";
 import Text from "@components/MdxComponents/Text.astro";
 import Ul from "@components/MdxComponents/Ul.astro";
 import BlogPost from "@layouts/BlogPost.astro";
@@ -49,6 +50,7 @@ const { Content, headings } = await post.render();
       a: Link,
       hr: Hr,
       ul: Ul,
+      ol: Ol,
       li: List,
       p: Text,
     }}
