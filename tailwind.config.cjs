@@ -7,8 +7,13 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
-          '"Noto Sans JP"',
-          '"Noto Color Emoji"',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Hiragino Kaku Gothic ProN"',
+          '"Hiragino Sans"',
+          'Meiryo', 
+          'sans-serif',
+          '"Segoe UI Emoji"',
           ...defaultTheme.fontFamily.sans,
         ],
       },
