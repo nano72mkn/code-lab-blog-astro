@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function ElapsedTime({ isoDate, className }: Props) {
-  const newDate = new Date(isoDate);
+  const newDate = new Date(`${isoDate}+09:00`);
 
   return <time
     className={className}
