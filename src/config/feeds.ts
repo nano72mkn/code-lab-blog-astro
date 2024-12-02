@@ -46,5 +46,10 @@ export const feeds: FeedData[] = [
     category: "podcast",
     icon: "🎙",
   },
+  {
+    url: "https://note.com/nano72mkn/rss",
+    category: "article",
+    icon: "✏️",
+  }
   // 'https://shota1995m.hatenablog.com/feed',
 ];
