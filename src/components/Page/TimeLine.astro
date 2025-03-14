@@ -1,17 +1,18 @@
 ---
 import ActivityChronology from "@components/ActivityChronology.astro";
-
 import { getActivities } from "@utils/getActivities";
 import { groupByYear } from "@utils/groupByYear";
 import { feeds } from "@config/feeds";
 
 const activityChronologies = groupByYear({
-  activities: await getActivities({ feeds }),
+  activities: await getActivities({ 
+    feeds,
+    includeServices: true  // サービスリリース情報を含める
+  }),
 });
 
 export const prerender = false;
 ---
-
 {activityChronologies.map((activityChronology) => (
     <ActivityChronology activityChronology={activityChronology} />
 ))}
