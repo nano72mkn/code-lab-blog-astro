@@ -16,6 +16,10 @@ const currentPage = () => {
   if (/^\/blog/.test(pathname)) {
     return "blog";
   }
+
+  if (/^\/services/.test(pathname)) {
+    return "services";
+  }
 }
 
 const navigationItems = [
@@ -29,9 +33,14 @@ const navigationItems = [
     href: "/blog",
     label: "Blog",
   },
+  {
+    isActive: currentPage() === "services",
+    href: "/services",
+    label: "Services",
+  },
 ];
 
-let cursorClass = `absolute block top-0 z-[-1] w-[50%] h-full bg-[#ddd] py-2 rounded-lg`;
+let cursorClass = `absolute block top-0 z-[-1] w-[33.33%] h-full bg-[#ddd] py-2 rounded-lg`;
 const currentNavIndex = navigationItems.findIndex((item) => item.isActive);
 
 switch (currentPage()) {
@@ -40,6 +49,9 @@ switch (currentPage()) {
     break;
   case "blog":
     cursorClass = `${cursorClass} left-[6em]`;
+    break;
+  case "services":
+    cursorClass = `${cursorClass} left-[12em]`;
     break;
   default:
     break;
