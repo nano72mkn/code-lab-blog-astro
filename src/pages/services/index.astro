@@ -1,25 +1,14 @@
 ---
 import BaseLayout from "@components/Layout/BaseLayout.astro";
 import ServiceCard from "@components/ServiceCard.astro";
+import { services } from "@config/services";
+import { format } from 'date-fns';
+import { ja } from 'date-fns/locale';
 
-// サンプルのサービスデータ
-// 実際のプロジェクトでは、このデータをMarkdownファイルや別のデータソースから取得することも検討できます
-const services = [
-  {
-    title: "CalPDF",
-    description: "PDFのカレンダーを簡単に作成できるサービス。iPadなどのノートアプリで使いやすいデザインになっています。",
-    imageUrl: "/service_image/calpdf.png",
-    serviceUrl: "https://calpdf.code-lab.xyz/",
-    tags: ["React", "Next.js", "TypeScript", "Emotion"]
-  },
-  {
-    title: "Share Basket",
-    description: "共有できるお買い物リストを作成できるサービス。家族や友人との共有リストを作成して、買い物を効率化しましょう。",
-    imageUrl: "/service_image/sharebasket.png",
-    serviceUrl: "https://share-basket.app/",
-    tags: ["SwiftUI", "Firebase", "Core Data"]
-  },
-];
+// リリース日順（降順）にサービスをソート
+const sortedServices = [...services].sort((a, b) => 
+  new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()
+);
 
 export const prerender = true;
 Astro.response.headers.set('Cache-Control', 's-maxage=60');
@@ -35,7 +24,20 @@ Astro.response.headers.set('Cache-Control', 's-maxage=60');
   </div>
 
   <section class="grid grid-cols-1 xl:grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-10">
-    {services.map((service) => <ServiceCard {...service} />)}
+    {sortedServices.map((service) => (
+      <div class="relative">
+        <div class="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs">
+          {format(new Date(service.releaseDate), 'yyyy年MM月dd日', { locale: ja })}
+        </div>
+        <ServiceCard 
+          title={service.title} 
+          description={service.description}
+          imageUrl={service.imageUrl}
+          serviceUrl={service.serviceUrl}
+          tags={service.tags}
+        />
+      </div>
+    ))}
   </section>
 
   <div class="mt-10 text-center">
