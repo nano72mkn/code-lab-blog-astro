@@ -3,7 +3,7 @@ import BaseLayout from "@components/Layout/BaseLayout.astro";
 import ServiceCard from "@components/ServiceCard.astro";
 import { services } from "@config/services";
 import { format } from 'date-fns';
-import { ja } from 'date-fns/locale';
+import ja from 'date-fns/locale/ja/index.js';
 
 // リリース日順（降順）にサービスをソート
 const sortedServices = [...services].sort((a, b) => 
