@@ -1,0 +1,52 @@
+---
+export interface Props {
+  formUrl: string;
+  height?: string;
+  title?: string;
+}
+
+const { formUrl, height = "800", title = "Google Form" } = Astro.props;
+
+// URLに?embedded=trueを追加（既に含まれていない場合）
+const embedUrl = formUrl.includes('?embedded=true') || formUrl.includes('&embedded=true') 
+  ? formUrl 
+  : formUrl.includes('?') 
+    ? `${formUrl}&embedded=true`
+    : `${formUrl}?embedded=true`;
+---
+
+<div class="google-form-container">
+  <iframe 
+    src={embedUrl}
+    width="100%" 
+    height={height}
+    frameborder="0" 
+    marginheight="0" 
+    marginwidth="0"
+    title={title}
+    loading="lazy"
+  >
+    読み込んでいます…
+  </iframe>
+</div>
+
+<style>
+  .google-form-container {
+    margin: 2rem 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f7fafc;
+  }
+
+  .google-form-container iframe {
+    width: 100%;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .google-form-container {
+      margin: 1rem 0;
+    }
+  }
+</style>

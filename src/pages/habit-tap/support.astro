@@ -1,5 +1,6 @@
 ---
 import AppLayout from "@components/Layout/AppLayout.astro";
+import GoogleForm from "@components/GoogleForm.astro";
 import { getEntry } from "astro:content";
 
 const entry = await getEntry("habit-tap", "support");
@@ -13,7 +14,7 @@ export const prerender = true;
 
 <AppLayout title={`${entry.data.title} - Habit Tap`} appName="Habit Tap" appSlug="habit-tap">
   <main class="support-container">
-    <Content />
+    <Content components={{GoogleForm}} />
   </main>
 </AppLayout>
 
@@ -77,6 +78,7 @@ export const prerender = true;
     color: #2d3748;
     font-weight: 600;
   }
+
 
   @media (max-width: 768px) {
     .support-container {

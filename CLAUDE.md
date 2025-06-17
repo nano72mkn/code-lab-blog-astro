@@ -142,3 +142,40 @@ export const prerender = true;
 - `/[app-slug]/` - ランディングページ
 - `/[app-slug]/terms` - 利用規約
 - `/[app-slug]/privacy` - プライバシーポリシー
+- `/[app-slug]/support` - サポートページ
+
+## Google Formの使用方法
+
+### 1. GoogleFormコンポーネント
+
+Google Formを埋め込む場合は、作成済みの`GoogleForm`コンポーネントを使用します。
+
+#### Markdownファイル内での使用
+
+```markdown
+<GoogleForm formUrl="https://docs.google.com/forms/d/e/[FORM_ID]/viewform" height="800" />
+```
+
+#### Astroファイル内での使用
+
+1. コンポーネントをインポート：
+```astro
+import GoogleForm from "@components/GoogleForm.astro";
+```
+
+2. Markdownコンテンツに渡す：
+```astro
+<Content components={{GoogleForm}} />
+```
+
+### 2. パラメータ
+
+- `formUrl`: Google FormのURL（必須）
+- `height`: iframeの高さ（デフォルト: "800"）
+- `title`: アクセシビリティ用のタイトル（デフォルト: "Google Form"）
+
+### 3. 注意事項
+
+- URLは自動的に埋め込み用（`?embedded=true`）に変換されます
+- レスポンシブ対応済み
+- 遅延読み込み（loading="lazy"）を使用

@@ -8,23 +8,16 @@ updatedDate: "2025-01-17"
 
 ## お問い合わせ
 
-Habit Tapに関するご質問、ご要望、不具合報告は以下の方法でお問い合わせください。
+Habit Tapに関するご質問、ご要望、不具合報告は以下のフォームからお問い合わせください。
 
-### メールでのお問い合わせ
+<GoogleForm formUrl="https://docs.google.com/forms/d/e/1FAIpQLScL6SufWhTnXvJNkB7Nwrxe3gnAARc7PWAY2vhzhAijys4nZA/viewform" height="800" />
 
-📧 **info@code-lab.xyz**
+### その他の連絡方法
 
-お問い合わせの際は、以下の情報をお知らせいただけると、より迅速に対応できます：
-- アプリのバージョン
-- ご使用の端末（iPhone/Android）とOSバージョン
-- 問題の詳細な説明
-- エラーメッセージ（表示されている場合）
+フォームが表示されない場合や、緊急のお問い合わせは以下からも受け付けています：
 
-### SNSでのお問い合わせ
-
-🐦 **X (Twitter): [@nano72mkn](https://twitter.com/nano72mkn)**
-
-開発者のアカウントにDMまたはメンションでお問い合わせいただけます。
+- 📧 **メール**: info@code-lab.xyz
+- 🐦 **X (Twitter)**: [@nano72mkn](https://twitter.com/nano72mkn)
 
 ## よくある質問（FAQ）
 
