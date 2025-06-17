@@ -76,7 +76,7 @@ updatedDate: "2025-06-17"
 
 本規約に関するご質問は、以下までお問い合わせください：
 
-- メール: support@code-lab.xyz
+- メール: info@code-lab.xyz
 - 開発者: @nano72mkn（X/Twitter）
 
 ## 10. 分離可能性

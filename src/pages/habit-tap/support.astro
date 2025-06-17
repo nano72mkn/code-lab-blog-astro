@@ -1,0 +1,98 @@
+---
+import AppLayout from "@components/Layout/AppLayout.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("habit-tap", "support");
+if (!entry) {
+  return Astro.redirect("/404");
+}
+const { Content } = await entry.render();
+
+export const prerender = true;
+---
+
+<AppLayout title={`${entry.data.title} - Habit Tap`} appName="Habit Tap" appSlug="habit-tap">
+  <main class="support-container">
+    <Content />
+  </main>
+</AppLayout>
+
+<style>
+  .support-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.8;
+  }
+
+  .support-container :global(h1) {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1a202c;
+  }
+
+  .support-container :global(h2) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #2d3748;
+  }
+
+  .support-container :global(h3) {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #2d3748;
+  }
+
+  .support-container :global(p) {
+    margin-bottom: 1rem;
+    color: #4a5568;
+  }
+
+  .support-container :global(ul),
+  .support-container :global(ol) {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .support-container :global(li) {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+  }
+
+  .support-container :global(a) {
+    color: #3182ce;
+    text-decoration: underline;
+  }
+
+  .support-container :global(a:hover) {
+    color: #2c5282;
+  }
+
+  .support-container :global(strong) {
+    color: #2d3748;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .support-container {
+      padding: 1rem;
+    }
+
+    .support-container :global(h1) {
+      font-size: 1.5rem;
+    }
+
+    .support-container :global(h2) {
+      font-size: 1.25rem;
+    }
+
+    .support-container :global(h3) {
+      font-size: 1.1rem;
+    }
+  }
+</style>

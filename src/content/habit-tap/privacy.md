@@ -63,7 +63,7 @@ HabitTap（以下、「本アプリ」）は、ユーザーのプライバシー
 
 プライバシーに関するご質問やご懸念がある場合は、以下までお問い合わせください：
 
-- メール: support@code-lab.xyz
+- メール: info@code-lab.xyz
 - 開発者: @nano72mkn（X/Twitter）
 
 ## 同意
