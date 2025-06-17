@@ -1,0 +1,84 @@
+---
+export interface Props {
+  appName: string;
+  appSlug: string;
+}
+
+const { appName, appSlug } = Astro.props;
+---
+
+<header class="app-header">
+  <div class="header-content">
+    <a href={`/${appSlug}`} class="app-logo">
+      {appName}
+    </a>
+    <nav class="app-nav">
+      <a href={`/${appSlug}/terms`}>利用規約</a>
+      <a href={`/${appSlug}/privacy`}>プライバシーポリシー</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .app-header {
+    background-color: #1a202c;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .app-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+  }
+
+  .app-logo:hover {
+    opacity: 0.8;
+  }
+
+  .app-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .app-nav a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s;
+  }
+
+  .app-nav a:hover {
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .header-content {
+      padding: 0 1rem;
+    }
+
+    .app-logo {
+      font-size: 1.25rem;
+    }
+
+    .app-nav {
+      gap: 1rem;
+    }
+
+    .app-nav a {
+      font-size: 0.75rem;
+    }
+  }
+</style>

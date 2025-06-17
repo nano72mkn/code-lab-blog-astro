@@ -1,0 +1,118 @@
+---
+import AppLayout from "@components/Layout/AppLayout.astro";
+
+export const prerender = true;
+---
+
+<AppLayout title="Habit Tap - 習慣化アプリ" appName="Habit Tap" appSlug="habit-tap">
+  <div class="app-landing">
+    <section class="hero">
+      <h1>Habit Tap</h1>
+      <p class="tagline">習慣を楽しく継続するためのアプリ</p>
+    </section>
+
+    <section class="links">
+      <h2>リンク</h2>
+      <div class="link-cards">
+        <a href="/habit-tap/terms" class="link-card">
+          <h3>利用規約</h3>
+          <p>Habit Tapの利用に関する規約をご確認ください</p>
+        </a>
+        <a href="/habit-tap/privacy" class="link-card">
+          <h3>プライバシーポリシー</h3>
+          <p>個人情報の取り扱いについて</p>
+        </a>
+      </div>
+    </section>
+  </div>
+</AppLayout>
+
+<style>
+  .app-landing {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+    color: #4a5568;
+  }
+
+  .links {
+    margin-top: 4rem;
+  }
+
+  .links h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .link-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .link-card {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s;
+  }
+
+  .link-card:hover {
+    background: #edf2f7;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .link-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+
+  .link-card p {
+    color: #4a5568;
+  }
+
+  @media (max-width: 768px) {
+    .app-landing {
+      padding: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .tagline {
+      font-size: 1rem;
+    }
+
+    .link-cards {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

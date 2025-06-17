@@ -1,0 +1,71 @@
+---
+import AppLayout from "@components/Layout/AppLayout.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("habit-tap", "terms");
+if (!entry) {
+  return Astro.redirect("/404");
+}
+const { Content } = await entry.render();
+
+export const prerender = true;
+---
+
+<AppLayout title={`${entry.data.title} - Habit Tap`} appName="Habit Tap" appSlug="habit-tap">
+  <main class="legal-container">
+    <Content />
+  </main>
+</AppLayout>
+
+<style>
+  .legal-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    line-height: 1.8;
+  }
+
+  .legal-container :global(h1) {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1a202c;
+  }
+
+  .legal-container :global(h2) {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #2d3748;
+  }
+
+  .legal-container :global(p) {
+    margin-bottom: 1rem;
+    color: #4a5568;
+  }
+
+  .legal-container :global(ul) {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-container :global(li) {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+  }
+
+  @media (max-width: 768px) {
+    .legal-container {
+      padding: 1rem;
+    }
+
+    .legal-container :global(h1) {
+      font-size: 1.5rem;
+    }
+
+    .legal-container :global(h2) {
+      font-size: 1.25rem;
+    }
+  }
+</style>

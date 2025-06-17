@@ -20,4 +20,15 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const habitTap = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    updatedDate: z
+      .string()
+      .or(z.date())
+      .transform((val) => new Date(val)),
+  }),
+});
+
+export const collections = { blog, "habit-tap": habitTap };

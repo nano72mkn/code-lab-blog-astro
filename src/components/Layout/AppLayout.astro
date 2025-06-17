@@ -1,0 +1,42 @@
+---
+import BaseHead from "../BaseHead.astro";
+import AppHeader from "../AppHeader.astro";
+import Footer from "../Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  appName: string;
+  appSlug: string;
+}
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, appName, appSlug } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <AppHeader appName={appName} appSlug={appSlug} />
+    <main class="app-main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-main {
+    flex: 1;
+    width: 100%;
+  }
+</style>
