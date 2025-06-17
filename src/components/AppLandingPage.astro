@@ -1,0 +1,374 @@
+---
+export interface Props {
+  appName: string;
+  appSlug: string;
+  tagline: string;
+  description?: string;
+  features?: {
+    title: string;
+    description: string;
+    icon?: string;
+  }[];
+  screenshots?: {
+    src: string;
+    alt: string;
+  }[];
+  appStoreUrl?: string;
+  playStoreUrl?: string;
+  primaryColor?: string;
+}
+
+const { 
+  appName, 
+  appSlug, 
+  tagline, 
+  description,
+  features = [],
+  screenshots = [],
+  appStoreUrl,
+  playStoreUrl,
+  primaryColor = "#3182ce"
+} = Astro.props;
+---
+
+<div class="landing-page">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="app-title">{appName}</h1>
+      <p class="tagline">{tagline}</p>
+      {description && <p class="description">{description}</p>}
+      
+      <!-- Store Buttons -->
+      {(appStoreUrl || playStoreUrl) && (
+        <div class="store-buttons">
+          {appStoreUrl && (
+            <a href={appStoreUrl} class="store-button app-store" target="_blank" rel="noopener noreferrer">
+              <img src="/images/app-store-badge.svg" alt="Download on the App Store" />
+            </a>
+          )}
+          {playStoreUrl && (
+            <a href={playStoreUrl} class="store-button play-store" target="_blank" rel="noopener noreferrer">
+              <img src="/images/google-play-badge.svg" alt="Get it on Google Play" />
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+    
+    <!-- Hero Image/Screenshot -->
+    {screenshots[0] && (
+      <div class="hero-image">
+        <img src={screenshots[0].src} alt={screenshots[0].alt} width="200" />
+      </div>
+    )}
+  </section>
+
+  <!-- Features Section -->
+  {features.length > 0 && (
+    <section class="features">
+      <h2>主な機能</h2>
+      <div class="features-grid">
+        {features.map((feature) => (
+          <div class="feature-card">
+            {feature.icon && <div class="feature-icon">{feature.icon}</div>}
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Screenshots Section -->
+  {screenshots.length > 1 && (
+    <section class="screenshots">
+      <h2>スクリーンショット</h2>
+      <div class="screenshots-grid">
+        {screenshots.map((screenshot) => (
+          <div class="screenshot">
+            <img src={screenshot.src} alt={screenshot.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Links Section -->
+  <section class="links">
+    <h2>リンク</h2>
+    <div class="link-cards">
+      <a href={`/${appSlug}/support`} class="link-card">
+        <h3>サポート</h3>
+        <p>お問い合わせ・よくある質問</p>
+      </a>
+      <a href={`/${appSlug}/terms`} class="link-card">
+        <h3>利用規約</h3>
+        <p>アプリの利用に関する規約</p>
+      </a>
+      <a href={`/${appSlug}/privacy`} class="link-card">
+        <h3>プライバシーポリシー</h3>
+        <p>個人情報の取り扱いについて</p>
+      </a>
+    </div>
+  </section>
+</div>
+
+<style define:vars={{ primaryColor }}>
+  .landing-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Hero Section */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 4rem 0;
+  }
+
+  .hero-content {
+    text-align: left;
+  }
+
+  .app-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #1a202c;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .tagline {
+    font-size: 1.5rem;
+    color: #4a5568;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .description {
+    font-size: 1.125rem;
+    color: #718096;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .store-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .store-button img {
+    height: 48px;
+    transition: transform 0.2s;
+  }
+
+  .store-button:hover img {
+    transform: scale(1.05);
+  }
+
+  .hero-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Features Section */
+  .features {
+    padding: 4rem 0;
+  }
+
+  .features h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: #f7fafc;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background: color-mix(in srgb, var(--primaryColor) 5%, #f7fafc);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primaryColor);
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-card p {
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  /* Screenshots Section */
+  .screenshots {
+    padding: 4rem 0;
+  }
+
+  .screenshots h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .screenshot {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+
+  .screenshot:hover {
+    transform: scale(1.02);
+  }
+
+  .screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Links Section */
+  .links {
+    padding: 4rem 0 2rem;
+  }
+
+  .links h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .link-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .link-card {
+    background: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+  }
+
+  .link-card:hover {
+    border-color: var(--primaryColor);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  /* Primary color accents */
+  .app-title {
+    background: linear-gradient(135deg, var(--primaryColor), color-mix(in srgb, var(--primaryColor) 70%, black));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .store-button:hover {
+    filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--primaryColor) 30%, transparent));
+  }
+
+  .link-card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+
+  .link-card p {
+    color: #718096;
+    font-size: 0.875rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .landing-page {
+      padding: 1rem;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .hero-content {
+      text-align: center;
+    }
+
+    .app-title {
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.25rem;
+    }
+
+    .store-buttons {
+      justify-content: center;
+    }
+
+    .features h2,
+    .screenshots h2 {
+      font-size: 2rem;
+    }
+
+    .features-grid,
+    .screenshots-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .link-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

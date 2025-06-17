@@ -58,6 +58,40 @@ updatedDate: "YYYY-MM-DD"
 以下のファイルを`src/pages/[app-slug]/`に作成：
 
 #### index.astro（ランディングページ）
+
+**方法1: AppLandingPageテンプレートを使用（推奨）**
+```astro
+---
+import AppLayout from "@components/Layout/AppLayout.astro";
+import AppLandingPage from "@components/AppLandingPage.astro";
+
+export const prerender = true;
+
+const features = [
+  {
+    icon: "🎯",
+    title: "機能1",
+    description: "機能の説明"
+  },
+  // 他の機能...
+];
+---
+
+<AppLayout title="[アプリ名] - [説明]" appName="[アプリ名]" appSlug="[app-slug]">
+  <AppLandingPage
+    appName="[アプリ名]"
+    appSlug="[app-slug]"
+    tagline="[キャッチコピー]"
+    description="[アプリの詳細説明]"
+    features={features}
+    primaryColor="#3182ce"
+    appStoreUrl="[App Store URL]"
+    playStoreUrl="[Google Play URL]"
+  />
+</AppLayout>
+```
+
+**方法2: カスタムランディングページ**
 ```astro
 ---
 import AppLayout from "@components/Layout/AppLayout.astro";
@@ -66,7 +100,7 @@ export const prerender = true;
 ---
 
 <AppLayout title="[アプリ名] - [説明]" appName="[アプリ名]" appSlug="[app-slug]">
-  <!-- ランディングページの内容 -->
+  <!-- カスタムのランディングページ内容 -->
 </AppLayout>
 ```
 
@@ -179,3 +213,46 @@ import GoogleForm from "@components/GoogleForm.astro";
 - URLは自動的に埋め込み用（`?embedded=true`）に変換されます
 - レスポンシブ対応済み
 - 遅延読み込み（loading="lazy"）を使用
+
+## AppLandingPageテンプレートの使用方法
+
+### パラメータ
+
+| パラメータ | 型 | 必須 | 説明 |
+|-----------|-----|------|------|
+| appName | string | ✓ | アプリ名 |
+| appSlug | string | ✓ | URLスラッグ |
+| tagline | string | ✓ | キャッチコピー |
+| description | string | | アプリの詳細説明 |
+| features | array | | 機能リスト（title, description, icon） |
+| screenshots | array | | スクリーンショット（src, alt） |
+| appStoreUrl | string | | App StoreのURL |
+| playStoreUrl | string | | Google PlayのURL |
+| primaryColor | string | | メインカラー（デフォルト: #3182ce） |
+
+### 使用例
+
+```astro
+<AppLandingPage
+  appName="MyApp"
+  appSlug="myapp"
+  tagline="革新的なアプリ体験を"
+  description="詳細な説明文..."
+  features={[
+    { icon: "🚀", title: "高速", description: "..." },
+    { icon: "🔒", title: "安全", description: "..." }
+  ]}
+  screenshots={[
+    { src: "/images/hero.png", alt: "メイン画面" },
+    { src: "/images/screen1.png", alt: "機能1" }
+  ]}
+  primaryColor="#8b5cf6"
+/>
+```
+
+### レイアウト構成
+
+1. **Heroセクション**: アプリ名、キャッチコピー、ストアボタン
+2. **機能セクション**: グリッド形式で機能を表示
+3. **スクリーンショット**: 複数の画面を表示
+4. **リンクセクション**: サポート、利用規約、プライバシーポリシー

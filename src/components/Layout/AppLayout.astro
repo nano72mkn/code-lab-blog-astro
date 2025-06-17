@@ -9,9 +9,10 @@ export interface Props {
   description?: string;
   appName: string;
   appSlug: string;
+  primaryColor?: string;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, appName, appSlug } = Astro.props;
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, appName, appSlug, primaryColor } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,7 +21,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION, appName, appSlug } =
     <BaseHead title={title} description={description} />
   </head>
   <body>
-    <AppHeader appName={appName} appSlug={appSlug} />
+    <AppHeader appName={appName} appSlug={appSlug} primaryColor={primaryColor} />
     <main class="app-main">
       <slot />
     </main>
