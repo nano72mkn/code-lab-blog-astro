@@ -38,7 +38,7 @@ export const apps: Record<string, AppConfig> = {
     serviceDescription: "タップするだけで習慣を記録。シンプルな操作で習慣化をサポートする iOS アプリ。",
     serviceImageUrl: "/app_lp/habit-tap/icon.png",
     serviceTags: ["React Native"],
-    releaseDate: "2025-06-18",
+    releaseDate: "2025-06-18", 
     features: [
       {
         icon: "📱",
