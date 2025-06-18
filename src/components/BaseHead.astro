@@ -8,15 +8,17 @@ type Props = {
   description?: string;
   slug?: string;
   appendMeta?: MetaDataType;
+  ogImage?: string;
+  isApp?: boolean;
 };
-const { title: titleProps, description: descriptionProps, slug, appendMeta } = Astro.props;
+const { title: titleProps, description: descriptionProps, slug, appendMeta, ogImage, isApp = false } = Astro.props;
 
 const title = `${titleProps ? `${titleProps} | ` : ""}Code Lab Blog`;
 const url = `${origin}${slug ? `/blog/${slug}` : ""}`;
 const description =
   descriptionProps || "フロントエンジニア、@nano72mknの個人ブログ&実験サイト";
-const ogpCardUrl = `${origin}/og/${slug || "ogp"}.png`;
-const isArticle = !!slug;
+const ogpCardUrl = ogImage || `${origin}/og/${slug || "ogp"}.png`;
+const isArticle = !!slug && !isApp;
 ---
 
 <head>
@@ -42,7 +44,7 @@ const isArticle = !!slug;
   <meta property="og:site_name" content="code-lab" />
   
   <!-- twitter -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content={isApp ? "summary_large_image" : "summary"} />
   <meta name="twitter:site" content="@nano72mkn" />
   
   <!-- hatena -->

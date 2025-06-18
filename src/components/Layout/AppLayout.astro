@@ -13,12 +13,19 @@ export interface Props {
 }
 
 const { title = SITE_TITLE, description = SITE_DESCRIPTION, appName, appSlug, primaryColor } = Astro.props;
+
+const ogImageUrl = Astro.url.origin + `/og/app/${appSlug}.png`;
 ---
 
 <!doctype html>
 <html lang="ja">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead 
+      title={title} 
+      description={description}
+      ogImage={ogImageUrl}
+      isApp={true}
+    />
   </head>
   <body>
     <AppHeader appName={appName} appSlug={appSlug} primaryColor={primaryColor} />
