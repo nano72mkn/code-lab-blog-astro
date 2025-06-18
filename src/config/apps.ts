@@ -26,6 +26,7 @@ export const apps: Record<string, AppConfig> = {
     primaryColor: "#4CAF50",
     tagline: "習慣化を極限までシンプルに。トリガー設定で継続率アップ。",
     description: "Habit Tapは「タップするだけ」という究極のシンプルさで習慣化をサポートします。行動科学に基づいたトリガー設定により、「朝起きたら水を飲む」「昼食後に散歩する」など、きっかけと習慣をセットで管理。",
+    appStoreUrl: "https://apps.apple.com/app/habit-tap/id6747366699",
     features: [
       {
         icon: "📱",
