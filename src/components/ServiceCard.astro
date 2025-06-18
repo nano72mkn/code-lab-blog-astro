@@ -5,9 +5,12 @@ interface Props {
   imageUrl: string;
   serviceUrl: string;
   tags?: string[];
+  isApp?: boolean;
+  appStoreUrl?: string;
+  playStoreUrl?: string;
 }
 
-const { title, description, imageUrl, serviceUrl, tags = [] } = Astro.props;
+const { title, description, imageUrl, serviceUrl, tags = [], isApp = false, appStoreUrl, playStoreUrl } = Astro.props;
 ---
 
 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
@@ -24,13 +27,35 @@ const { title, description, imageUrl, serviceUrl, tags = [] } = Astro.props;
         ))}
       </div>
     )}
-    <a 
-      href={serviceUrl} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    >
-      サービスを見る
-    </a>
+    <div class="flex gap-2 flex-wrap">
+      <a 
+        href={serviceUrl} 
+        target={isApp ? "_self" : "_blank"}
+        rel={isApp ? "" : "noopener noreferrer"}
+        class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        {isApp ? "詳細を見る" : "サービスを見る"}
+      </a>
+      {appStoreUrl && (
+        <a 
+          href={appStoreUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-block"
+        >
+          <img src="/images/app-store-badge.svg" alt="Download on the App Store" class="h-10" />
+        </a>
+      )}
+      {playStoreUrl && (
+        <a 
+          href={playStoreUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-block"
+        >
+          <img src="/images/google-play-badge.svg" alt="Get it on Google Play" class="h-10" />
+        </a>
+      )}
+    </div>
   </div>
 </div>

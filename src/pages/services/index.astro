@@ -2,11 +2,27 @@
 import BaseLayout from "@components/Layout/BaseLayout.astro";
 import ServiceCard from "@components/ServiceCard.astro";
 import { services } from "@config/services";
+import { getAppsForServices } from "@config/apps";
 import { format } from 'date-fns';
 import ja from 'date-fns/locale/ja/index.js';
 
+// 既存のサービスとアプリを統合
+const appsAsServices = getAppsForServices().map(app => ({
+  title: app.appName,
+  description: app.serviceDescription || app.description || "",
+  imageUrl: app.serviceImageUrl || "",
+  serviceUrl: `/${app.appSlug}/`,
+  tags: app.serviceTags || [],
+  releaseDate: app.releaseDate || new Date().toISOString().split('T')[0],
+  isApp: true,
+  appStoreUrl: app.appStoreUrl,
+  playStoreUrl: app.playStoreUrl
+}));
+
+const allServices = [...services, ...appsAsServices];
+
 // リリース日順（降順）にサービスをソート
-const sortedServices = [...services].sort((a, b) => 
+const sortedServices = allServices.sort((a, b) => 
   new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()
 );
 
@@ -35,6 +51,9 @@ Astro.response.headers.set('Cache-Control', 's-maxage=60');
           imageUrl={service.imageUrl}
           serviceUrl={service.serviceUrl}
           tags={service.tags}
+          isApp={service.isApp}
+          appStoreUrl={service.appStoreUrl}
+          playStoreUrl={service.playStoreUrl}
         />
       </div>
     ))}

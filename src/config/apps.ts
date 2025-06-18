@@ -16,6 +16,12 @@ export interface AppConfig {
   }[];
   appStoreUrl?: string;
   playStoreUrl?: string;
+  // サービス一覧ページ用の追加フィールド
+  showInServices?: boolean;
+  serviceDescription?: string;
+  serviceImageUrl?: string;
+  serviceTags?: string[];
+  releaseDate?: string; // ISO形式の日付文字列 YYYY-MM-DD
 }
 
 // アプリ設定
@@ -27,6 +33,12 @@ export const apps: Record<string, AppConfig> = {
     tagline: "習慣化を極限までシンプルに。トリガー設定で継続率アップ。",
     description: "Habit Tapは「タップするだけ」という究極のシンプルさで習慣化をサポートします。行動科学に基づいたトリガー設定により、「朝起きたら水を飲む」「昼食後に散歩する」など、きっかけと習慣をセットで管理。",
     appStoreUrl: "https://apps.apple.com/app/habit-tap/id6747366699",
+    // サービス一覧ページ用
+    showInServices: true,
+    serviceDescription: "タップするだけで習慣を記録。シンプルな操作で習慣化をサポートする iOS アプリ。",
+    serviceImageUrl: "/app_lp/habit-tap/icon.png",
+    serviceTags: ["React Native"],
+    releaseDate: "2025-06-18",
     features: [
       {
         icon: "📱",
@@ -88,4 +100,16 @@ export function getAppConfig(appSlug: string): AppConfig {
     throw new Error(`App config not found for: ${appSlug}`);
   }
   return config;
+}
+
+// サービス一覧に表示するアプリを取得
+export function getAppsForServices(): AppConfig[] {
+  return Object.values(apps)
+    .filter(app => app.showInServices)
+    .sort((a, b) => {
+      // リリース日で降順ソート（新しい順）
+      const dateA = a.releaseDate ? new Date(a.releaseDate).getTime() : 0;
+      const dateB = b.releaseDate ? new Date(b.releaseDate).getTime() : 0;
+      return dateB - dateA;
+    });
 }
