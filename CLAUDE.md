@@ -4,6 +4,39 @@
 
 このブログサイトに新しいアプリのページを追加する際は、以下の手順に従ってください：
 
+### 0. アプリ設定の追加（重要）
+
+`src/config/apps.ts`にアプリの設定を追加します：
+
+```typescript
+export const apps: Record<string, AppConfig> = {
+  "[app-slug]": {
+    appName: "[アプリ名]",
+    appSlug: "[app-slug]",
+    primaryColor: "#3182ce",
+    tagline: "[キャッチコピー]",
+    description: "[アプリの詳細説明]",
+    features: [
+      {
+        icon: "🎯",
+        title: "機能1",
+        description: "機能の説明"
+      },
+      // 他の機能...
+    ],
+    screenshots: [
+      {
+        src: "/app_lp/[app-slug]/screenshot-1.png",
+        alt: "スクリーンショットの説明"
+      },
+      // 他のスクリーンショット...
+    ],
+    appStoreUrl: "[App Store URL]", // オプション
+    playStoreUrl: "[Google Play URL]" // オプション
+  },
+  // 既存のアプリ設定...
+};
+
 ### 1. ディレクトリ構造の作成
 
 ```bash
@@ -59,48 +92,24 @@ updatedDate: "YYYY-MM-DD"
 
 #### index.astro（ランディングページ）
 
-**方法1: AppLandingPageテンプレートを使用（推奨）**
 ```astro
 ---
-import AppLayout from "@components/Layout/AppLayout.astro";
 import AppLandingPage from "@components/AppLandingPage.astro";
-
-export const prerender = true;
-
-const features = [
-  {
-    icon: "🎯",
-    title: "機能1",
-    description: "機能の説明"
-  },
-  // 他の機能...
-];
----
-
-<AppLayout title="[アプリ名] - [説明]" appName="[アプリ名]" appSlug="[app-slug]">
-  <AppLandingPage
-    appName="[アプリ名]"
-    appSlug="[app-slug]"
-    tagline="[キャッチコピー]"
-    description="[アプリの詳細説明]"
-    features={features}
-    primaryColor="#3182ce"
-    appStoreUrl="[App Store URL]"
-    playStoreUrl="[Google Play URL]"
-  />
-</AppLayout>
-```
-
-**方法2: カスタムランディングページ**
-```astro
----
 import AppLayout from "@components/Layout/AppLayout.astro";
+import { getAppConfig } from "@config/apps";
 
 export const prerender = true;
+
+const config = getAppConfig("[app-slug]");
 ---
 
-<AppLayout title="[アプリ名] - [説明]" appName="[アプリ名]" appSlug="[app-slug]">
-  <!-- カスタムのランディングページ内容 -->
+<AppLayout 
+  title={`${config.appName} - [サブタイトル]`} 
+  appName={config.appName} 
+  appSlug={config.appSlug} 
+  primaryColor={config.primaryColor}
+>
+  <AppLandingPage {...config} />
 </AppLayout>
 ```
 
@@ -109,7 +118,9 @@ export const prerender = true;
 ---
 import AppLayout from "@components/Layout/AppLayout.astro";
 import { getEntry } from "astro:content";
+import { getAppConfig } from "@config/apps";
 
+const config = getAppConfig("[app-slug]");
 const entry = await getEntry("[app-slug]", "terms");
 if (!entry) {
   return Astro.redirect("/404");
@@ -119,7 +130,12 @@ const { Content } = await entry.render();
 export const prerender = true;
 ---
 
-<AppLayout title={`${entry.data.title} - [アプリ名]`} appName="[アプリ名]" appSlug="[app-slug]">
+<AppLayout 
+  title={`${entry.data.title} - ${config.appName}`} 
+  appName={config.appName} 
+  appSlug={config.appSlug} 
+  primaryColor={config.primaryColor}
+>
   <main class="legal-container">
     <Content />
   </main>
@@ -135,7 +151,9 @@ export const prerender = true;
 ---
 import AppLayout from "@components/Layout/AppLayout.astro";
 import { getEntry } from "astro:content";
+import { getAppConfig } from "@config/apps";
 
+const config = getAppConfig("[app-slug]");
 const entry = await getEntry("[app-slug]", "privacy");
 if (!entry) {
   return Astro.redirect("/404");
@@ -145,9 +163,48 @@ const { Content } = await entry.render();
 export const prerender = true;
 ---
 
-<AppLayout title={`${entry.data.title} - [アプリ名]`} appName="[アプリ名]" appSlug="[app-slug]">
+<AppLayout 
+  title={`${entry.data.title} - ${config.appName}`} 
+  appName={config.appName} 
+  appSlug={config.appSlug} 
+  primaryColor={config.primaryColor}
+>
   <main class="legal-container">
     <Content />
+  </main>
+</AppLayout>
+
+<style>
+  /* 既存のスタイルを使用 */
+</style>
+```
+
+#### support.astro（サポートページ）
+```astro
+---
+import AppLayout from "@components/Layout/AppLayout.astro";
+import GoogleForm from "@components/GoogleForm.astro";
+import { getEntry } from "astro:content";
+import { getAppConfig } from "@config/apps";
+
+const config = getAppConfig("[app-slug]");
+const entry = await getEntry("[app-slug]", "support");
+if (!entry) {
+  return Astro.redirect("/404");
+}
+const { Content } = await entry.render();
+
+export const prerender = true;
+---
+
+<AppLayout 
+  title={`${entry.data.title} - ${config.appName}`} 
+  appName={config.appName} 
+  appSlug={config.appSlug} 
+  primaryColor={config.primaryColor}
+>
+  <main class="support-container">
+    <Content components={{GoogleForm}} />
   </main>
 </AppLayout>
 

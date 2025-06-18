@@ -1,7 +1,9 @@
 ---
 import AppLayout from "@components/Layout/AppLayout.astro";
 import { getEntry } from "astro:content";
+import { getAppConfig } from "@config/apps";
 
+const config = getAppConfig("habit-tap");
 const entry = await getEntry("habit-tap", "privacy");
 if (!entry) {
   return Astro.redirect("/404");
@@ -11,7 +13,12 @@ const { Content } = await entry.render();
 export const prerender = true;
 ---
 
-<AppLayout title={`${entry.data.title} - Habit Tap`} appName="Habit Tap" appSlug="habit-tap" primaryColor="#4CAF50">
+<AppLayout 
+  title={`${entry.data.title} - ${config.appName}`} 
+  appName={config.appName} 
+  appSlug={config.appSlug} 
+  primaryColor={config.primaryColor}
+>
   <main class="legal-container">
     <Content />
   </main>
